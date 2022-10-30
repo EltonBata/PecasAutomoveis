@@ -1,3 +1,31 @@
 body{
-    background-color: #9f9f9f;
+    background-color: 	#9f9f9f;
+    overflow-y: hidden;
+    
 }
+
+.container-fluid{
+    height: 100vh;
+}
+
+.form{
+    border: 2px solid whitesmoke;
+    border-radius: 3px;
+    width: 600px;
+}
+
+input{
+    background-color: #dcdcdc;
+}
+
+.logo{
+    width: 200px;
+    height: 200px;
+    background-image: url(../fotos/logo.png);
+    background-position: center;
+    background-size: cover;
+    margin-top: -100px;
+    background-color: #9f9f9f;
+    color: whitesmoke;
+}
+

@@ -1,0 +1,83 @@
+body{
+    background-color: #bdbdbd;
+    overflow: hidden;
+}
+
+.logo{
+    width: 70px;
+}
+
+.head{
+    background-color: #424242;
+}
+
+.menu{
+    background-color: #696969;
+    height: 89vh;
+}
+
+.principal{
+    display: flex;
+}
+
+.conteudo h3{
+    color: #696969;
+}
+.conteudo{
+    overflow: auto;
+    height: 89vh;
+}
+
+th{
+    color: #424242;
+}
+
+li a{
+    font-weight: bold;
+    color: whitesmoke !important;
+}
+
+.menu a{
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+hr{
+    color: whitesmoke;
+    margin: 0;
+}
+
+.menu span{
+    font-size: 15px;
+    margin-top: 10px;
+    width: 25px;
+    height: 25px;
+    background-color: #424242;
+    color: whitesmoke;
+    font-weight: bold;
+}
+
+.relatorio{
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+
+label{
+    color: #424242;
+}
+
+.upload{
+   position: absolute;
+   width: 270px;
+   opacity: 0;
+
+}
+
+input{
+    background-color: whitesmoke !important;
+}
+
+.nav-link:hover {
+    color: #b63340 !important;
+}
