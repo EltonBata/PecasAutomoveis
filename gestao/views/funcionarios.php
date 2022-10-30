@@ -23,7 +23,7 @@
 
     </div>
     <div class="relatorio">
-        <a href="" class="btn btn-danger">Gerar Relatorio</a>
+        <a href="" class="btn btn-danger"><i class="fa-solid fa-file-invoice"></i> Gerar Relatorio</a>
     </div>
 </div>
    

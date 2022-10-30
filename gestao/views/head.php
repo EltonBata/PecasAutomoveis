@@ -64,7 +64,7 @@
             </li>
             <hr>
             <li class="nav-item">
-                <a href="" class="nav-link"><i class="fa-solid fa-list-check"></i> Gestao</a>
+                <a href="./gestao.php" class="nav-link"><i class="fa-solid fa-list-check"></i> Gestao</a>
             </li>
         </ul>
     </nav>
