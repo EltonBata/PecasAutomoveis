@@ -2,7 +2,7 @@
 
 <div class="container conteudo col-sm-10 p-3">
 
-    <h3 class="text-center">Funcionarios</h3>
+    <h3 class="text-center"><i class="fa-solid fa-user-gear"></i> Funcionarios</h3>
 
     <div class="container mt-2">
         <table class="table">

@@ -2,7 +2,7 @@
 
 <div class="container conteudo col-sm-10 p-3">
 
-    <h3 class="text-center">Adicionar Novo Funcionario</h3>
+    <h3 class="text-center"><i class="fa-solid fa-user-plus"></i> Adicionar Novo Funcionario</h3>
 
     <div class="mt-2">
         <form action="" method="post" class="d-flex">
@@ -50,6 +50,15 @@
                     <label class="form-label">Morada:</label>
                     <textarea name="morada" cols="30" rows="10" class="form-control"></textarea>
                 </div>
+
+                <div class="container">
+                    <label class="form-label">Perfil:</label>
+                    <select name="perfil" class="form-select">
+                        <option value="admin">Administrador</option>
+                        <option value="gestor">Gestor</option>
+                    </select>
+                </div>
+                
                 <div class="container my-3">
                     <button class="btn btn-success" type="submit">Registrar</button>
                     <button class="btn btn-danger">Cancelar</button>

@@ -2,7 +2,7 @@
 
 <div class="container conteudo col-sm-10 p-3">
 
-    <h3 class="text-center">Adicionar Nova Peca</h3>
+    <h3 class="text-center"><i class="fa-solid fa-wrench"></i> Adicionar Nova Peca</h3>
 
     <div class="mt-2 d-flex mt-5">
         <form action="" method="post" class="w-75 d-flex">

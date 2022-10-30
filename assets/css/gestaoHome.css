@@ -74,7 +74,7 @@ label{
 
 }
 
-input{
+input, select, textarea{
     background-color: whitesmoke !important;
 }
 

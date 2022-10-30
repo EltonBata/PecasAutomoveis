@@ -52,7 +52,7 @@
                 <a href="./clientes.php" class="nav-link"><i class="fa-solid fa-users-gear"></i> Clientes</a>
             </li>
             <li class="nav-item d-flex align-items-center">
-                <a href="./feedbacks.php" class="nav-link"><i class="fa-solid fa-comment"></i> Feedbacks</a>
+                <a href="./feedback.php" class="nav-link"><i class="fa-solid fa-comment"></i> Feedbacks</a>
                 <span class="rounded-circle ms-2 d-flex justify-content-center align-items-center">5</span>
             </li>
             <hr>
