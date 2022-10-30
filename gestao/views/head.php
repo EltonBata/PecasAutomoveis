@@ -57,7 +57,7 @@
             </li>
             <hr>
             <li class="nav-item">
-                <a href="" class="nav-link"><i class="fa-solid fa-user-plus"></i> Novo Funcionario</a>
+                <a href="./adicionarFuncionario.php" class="nav-link"><i class="fa-solid fa-user-plus"></i> Novo Funcionario</a>
             </li>
             <li class="nav-item">
                 <a href="./funcionarios.php" class="nav-link"><i class="fa-solid fa-user-gear"></i> Funcionarios</a>
