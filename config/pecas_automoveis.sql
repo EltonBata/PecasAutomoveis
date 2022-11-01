@@ -40,9 +40,10 @@ CREATE TABLE IF NOT EXISTS `administrador` (
   `email` varchar(100) NOT NULL,
   `contactos` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
+
 
 --
 -- Estrutura da tabela `cliente`
@@ -58,7 +59,7 @@ CREATE TABLE IF NOT EXISTS `cliente` (
   `morada` text NOT NULL,
   `nr_bi` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -83,7 +84,7 @@ CREATE TABLE IF NOT EXISTS `compra` (
   KEY `id_cliente` (`id_cliente`),
   KEY `id_gestor` (`id_gestor`),
   KEY `id_peca` (`id_peca`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -101,7 +102,7 @@ CREATE TABLE IF NOT EXISTS `feedback` (
   PRIMARY KEY (`id`),
   KEY `id_cliente` (`id_cliente`),
   KEY `id_resposta` (`id_resposta`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -119,7 +120,7 @@ CREATE TABLE IF NOT EXISTS `gestao` (
   PRIMARY KEY (`id`),
   KEY `id_gestor` (`id_gestor`),
   KEY `id_peca` (`id_peca`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -140,7 +141,7 @@ CREATE TABLE IF NOT EXISTS `gestor` (
   `email` varchar(100) NOT NULL,
   `contactos` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Extraindo dados da tabela `gestor`
@@ -168,7 +169,7 @@ CREATE TABLE IF NOT EXISTS `peca` (
   `cor` varchar(50) NOT NULL,
   `status` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -185,7 +186,7 @@ CREATE TABLE IF NOT EXISTS `perfil` (
   `id_gestor` int NOT NULL,
   `id_administrador` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -201,7 +202,7 @@ CREATE TABLE IF NOT EXISTS `resposta` (
   `id_gestor` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `id_gestor` (`id_gestor`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Restrições para despejos de tabelas
