@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 01-Nov-2022 às 11:33
+-- Tempo de geração: 01-Nov-2022 às 11:59
 -- Versão do servidor: 8.0.27
 -- versão do PHP: 7.4.26
 
@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Banco de dados: `pecas_automoveis`
 --
+CREATE DATABASE IF NOT EXISTS `pecas_automoveis` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `pecas_automoveis`;
 
 -- --------------------------------------------------------
 
@@ -242,6 +244,48 @@ ALTER TABLE `gestao`
 --
 ALTER TABLE `resposta`
   ADD CONSTRAINT `resposta_ibfk_1` FOREIGN KEY (`id_gestor`) REFERENCES `gestor` (`id`);
+--
+-- Banco de dados: `todo`
+--
+CREATE DATABASE IF NOT EXISTS `todo` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
+USE `todo`;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `my_todo`
+--
+
+DROP TABLE IF EXISTS `my_todo`;
+CREATE TABLE IF NOT EXISTS `my_todo` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `username` varchar(100) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `description` text NOT NULL,
+  `due_date` datetime NOT NULL,
+  `created_date` datetime NOT NULL,
+  `label` varchar(100) NOT NULL,
+  `progress` int NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `time` varchar(20) NOT NULL,
+  `date` varchar(30) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `user_status` varchar(20) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
