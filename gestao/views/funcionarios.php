@@ -2,7 +2,7 @@
 
 <div class="container conteudo col-sm-10 p-3">
 
-    <h3 class="text-center"><i class="fa-solid fa-user-gear"></i> Funcionarios</h3>
+    <h3 class="text-center"><i class="fa-solid fa-user-gear"></i> Funcionarios(100)</h3>
 
     <div class="container mt-2">
         <table class="table">
@@ -26,7 +26,7 @@
         <a href="" class="btn btn-danger"><i class="fa-solid fa-file-invoice"></i> Gerar Relatorio</a>
     </div>
 </div>
-   
+
 </div>
 
 <?php include_once './foot.php'; ?>

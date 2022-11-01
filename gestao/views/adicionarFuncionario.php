@@ -5,9 +5,9 @@
     <h3 class="text-center"><i class="fa-solid fa-user-plus"></i> Adicionar Novo Funcionario</h3>
 
     <div class="mt-2">
-        <form action="" method="post" class="d-flex">
+        <form action="../controllers/adicionaFuncionarioController.php" method="post" class="d-flex">
             <div class="container">
-                
+
                 <div class="container">
                     <label class="form-label">Nome:</label>
                     <input type="text" class="form-control" name="nome">
@@ -18,7 +18,7 @@
                 </div>
                 <div class="container">
                     <label class="form-label">Data de Nascimento:</label>
-                    <input type="date" class="form-control" name="dataNascimento">
+                    <input type="date" class="form-control" name="data_nasc">
                 </div>
                 <div class="container">
                     <label class="form-label">Nacionalidade:</label>
@@ -31,8 +31,8 @@
                 <div class="container">
                     <label class="form-label">Sexo:</label>
                     <select name="sexo" class="form-select">
-                        <option value="m">M</option>
-                        <option value="f">F</option>
+                        <option value="M">M</option>
+                        <option value="F">F</option>
                     </select>
                 </div>
                 <div class="container">
@@ -41,8 +41,8 @@
                 </div>
             </div>
 
-           <div class="container">
             <div class="container">
+                <div class="container">
                     <label class="form-label">Contactos:</label>
                     <input type="text" class="form-control" name="contactos">
                 </div>
@@ -58,12 +58,12 @@
                         <option value="gestor">Gestor</option>
                     </select>
                 </div>
-                
+
                 <div class="container my-3">
                     <button class="btn btn-success" type="submit">Registrar</button>
                     <button class="btn btn-danger">Cancelar</button>
                 </div>
-           </div>
+            </div>
         </form>
 
     </div>
