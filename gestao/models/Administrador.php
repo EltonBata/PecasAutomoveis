@@ -1,7 +1,7 @@
 <?php
 include_once '../../config/db.php';
 
-class Gestor
+class Administrador
 {
     public $conexao;
     public $sql;
@@ -18,7 +18,7 @@ class Gestor
 
     public function selectAll()
     {
-        $this->sql = $this->conexao->query("SELECT * FROM gestor");
+        $this->sql = $this->conexao->query("SELECT * FROM administrador");
         $this->sql->execute();
         $this->dados = $this->sql->fetchAll(PDO::FETCH_ASSOC);
         return $this->dados;
@@ -26,7 +26,7 @@ class Gestor
 
     public function count()
     {
-        $this->sql = $this->conexao->query("SELECT * FROM gestor");
+        $this->sql = $this->conexao->query("SELECT * FROM administrador");
         $this->sql->execute();
         $this->conta = $this->sql->rowCount();
         return $this->conta;
@@ -34,15 +34,14 @@ class Gestor
 
     public function insert($params = [])
     {
-        var_dump($params);
-        $this->sql = $this->conexao->prepare("INSERT INTO gestor (nome, apelido, data_nascimento, nacionalidade, nr_bi, sexo, morada, email, contactos) VALUES (:nome, :apelido, :data_nascimento, :nacionalidade, :nr_bi, :sexo, :morada, :email, :contactos)");
+        $this->sql = $this->conexao->prepare("INSERT INTO administrador (nome, apelido, data_nascimento, nacionalidade, nr_bi, sexo, morada, email, contactos) VALUES (:nome, :apelido, :data_nascimento, :nacionalidade, :nr_bi, :sexo, :morada, :email, :contactos)");
         $this->sql->execute($params);
         $this->conta = $this->sql->rowCount();
     }
 
     public function delete($id)
     {
-        $this->sql = $this->conexao->prepare("DELETE FROM gestor WHERE id='$id'");
+        $this->sql = $this->conexao->prepare("DELETE FROM administrador WHERE id='$id'");
         $this->sql->execute();
         $this->conta = $this->sql->rowCount();
         return $this->conta;
