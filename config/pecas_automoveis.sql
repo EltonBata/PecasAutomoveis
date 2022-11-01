@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Tempo de geração: 26-Out-2022 às 18:57
--- Versão do servidor: 10.4.25-MariaDB
--- versão do PHP: 8.1.10
+-- Host: 127.0.0.1:3306
+-- Tempo de geração: 01-Nov-2022 às 11:33
+-- Versão do servidor: 8.0.27
+-- versão do PHP: 7.4.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Banco de dados: `pecas_automovel`
+-- Banco de dados: `pecas_automoveis`
 --
 
 -- --------------------------------------------------------
@@ -27,19 +27,22 @@ SET time_zone = "+00:00";
 -- Estrutura da tabela `administrador`
 --
 
-CREATE TABLE `administrador` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `administrador`;
+CREATE TABLE IF NOT EXISTS `administrador` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `nome` varchar(100) NOT NULL,
   `apelido` varchar(100) NOT NULL,
   `data_nascimento` date NOT NULL,
+  `nacionalidade` int NOT NULL,
   `nr_bi` varchar(100) NOT NULL,
   `sexo` char(5) NOT NULL,
   `morada` text NOT NULL,
   `email` varchar(100) NOT NULL,
   `contactos` varchar(100) NOT NULL,
-  `password` varchar(32) NOT NULL,
-  `id_administrador` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `id_administrador` int NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `adm_id` (`id_administrador`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -47,16 +50,17 @@ CREATE TABLE `administrador` (
 -- Estrutura da tabela `cliente`
 --
 
-CREATE TABLE `cliente` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `cliente`;
+CREATE TABLE IF NOT EXISTS `cliente` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `nome` varchar(100) NOT NULL,
   `apelido` varchar(100) NOT NULL,
   `email` varchar(512) NOT NULL,
   `contactos` varchar(100) NOT NULL,
   `morada` text NOT NULL,
   `nr_bi` varchar(50) NOT NULL,
-  `password` varchar(32) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -64,17 +68,24 @@ CREATE TABLE `cliente` (
 -- Estrutura da tabela `compra`
 --
 
-CREATE TABLE `compra` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `compra`;
+CREATE TABLE IF NOT EXISTS `compra` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `data_compra` date NOT NULL,
   `data_entrega` date NOT NULL,
   `local_entrega` text NOT NULL,
+  `quantidade` int NOT NULL,
   `desconto` float NOT NULL,
+  `status` varchar(100) NOT NULL,
   `total_pago` float NOT NULL,
-  `id_cliente` int(11) NOT NULL,
-  `id_peca` int(11) NOT NULL,
-  `id_gestor` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `id_cliente` int NOT NULL,
+  `id_peca` int NOT NULL,
+  `id_gestor` int NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_cliente` (`id_cliente`),
+  KEY `id_gestor` (`id_gestor`),
+  KEY `id_peca` (`id_peca`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -82,13 +93,17 @@ CREATE TABLE `compra` (
 -- Estrutura da tabela `feedback`
 --
 
-CREATE TABLE `feedback` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `feedback`;
+CREATE TABLE IF NOT EXISTS `feedback` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `mensagem` text NOT NULL,
   `data` date NOT NULL,
-  `id_cliente` int(11) NOT NULL,
-  `id_resposta` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `id_cliente` int NOT NULL,
+  `id_resposta` int NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_cliente` (`id_cliente`),
+  KEY `id_resposta` (`id_resposta`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -96,13 +111,17 @@ CREATE TABLE `feedback` (
 -- Estrutura da tabela `gestao`
 --
 
-CREATE TABLE `gestao` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `gestao`;
+CREATE TABLE IF NOT EXISTS `gestao` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `operacao` varchar(100) NOT NULL,
   `data` date NOT NULL,
-  `id_gestor` int(11) NOT NULL,
-  `id_peca` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `id_gestor` int NOT NULL,
+  `id_peca` int NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_gestor` (`id_gestor`),
+  KEY `id_peca` (`id_peca`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -110,19 +129,27 @@ CREATE TABLE `gestao` (
 -- Estrutura da tabela `gestor`
 --
 
-CREATE TABLE `gestor` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `gestor`;
+CREATE TABLE IF NOT EXISTS `gestor` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `nome` varchar(100) NOT NULL,
   `apelido` varchar(100) NOT NULL,
   `data_nascimento` date NOT NULL,
+  `nacionalidade` varchar(100) NOT NULL,
   `nr_bi` varchar(100) NOT NULL,
   `sexo` char(5) NOT NULL,
   `morada` text NOT NULL,
   `email` varchar(100) NOT NULL,
   `contactos` varchar(100) NOT NULL,
-  `password` varchar(32) NOT NULL,
-  `id_administrador` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Extraindo dados da tabela `gestor`
+--
+
+INSERT INTO `gestor` (`id`, `nome`, `apelido`, `data_nascimento`, `nacionalidade`, `nr_bi`, `sexo`, `morada`, `email`, `contactos`) VALUES
+(8, 'Jose Alberto', 'Kagame', '2022-11-02', 'Moçambicano', '123456789N', 'M', 'Maputo\r\nMatola', 'jAlbert@gmail.com', '843637263 ou 876252415');
 
 -- --------------------------------------------------------
 
@@ -130,8 +157,9 @@ CREATE TABLE `gestor` (
 -- Estrutura da tabela `peca`
 --
 
-CREATE TABLE `peca` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `peca`;
+CREATE TABLE IF NOT EXISTS `peca` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `nome` varchar(512) NOT NULL,
   `tipo` varchar(100) NOT NULL,
   `tamanho` varchar(50) NOT NULL,
@@ -139,8 +167,27 @@ CREATE TABLE `peca` (
   `preco` float NOT NULL,
   `data_fabrico` date NOT NULL,
   `local_fabrico` varchar(512) NOT NULL,
-  `cor` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `cor` varchar(50) NOT NULL,
+  `status` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `perfil`
+--
+
+DROP TABLE IF EXISTS `perfil`;
+CREATE TABLE IF NOT EXISTS `perfil` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `username` varchar(200) NOT NULL,
+  `password` varchar(32) NOT NULL,
+  `perfil` varchar(100) NOT NULL,
+  `id_gestor` int NOT NULL,
+  `id_administrador` int NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -148,126 +195,15 @@ CREATE TABLE `peca` (
 -- Estrutura da tabela `resposta`
 --
 
-CREATE TABLE `resposta` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `resposta`;
+CREATE TABLE IF NOT EXISTS `resposta` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `mensagem` text NOT NULL,
   `data` date NOT NULL,
-  `id_gestor` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Índices para tabelas despejadas
---
-
---
--- Índices para tabela `administrador`
---
-ALTER TABLE `administrador`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `adm_id` (`id_administrador`);
-
---
--- Índices para tabela `cliente`
---
-ALTER TABLE `cliente`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices para tabela `compra`
---
-ALTER TABLE `compra`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_cliente` (`id_cliente`),
-  ADD KEY `id_gestor` (`id_gestor`),
-  ADD KEY `id_peca` (`id_peca`);
-
---
--- Índices para tabela `feedback`
---
-ALTER TABLE `feedback`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_cliente` (`id_cliente`),
-  ADD KEY `id_resposta` (`id_resposta`);
-
---
--- Índices para tabela `gestao`
---
-ALTER TABLE `gestao`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_gestor` (`id_gestor`),
-  ADD KEY `id_peca` (`id_peca`);
-
---
--- Índices para tabela `gestor`
---
-ALTER TABLE `gestor`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_administrador` (`id_administrador`);
-
---
--- Índices para tabela `peca`
---
-ALTER TABLE `peca`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices para tabela `resposta`
---
-ALTER TABLE `resposta`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_gestor` (`id_gestor`);
-
---
--- AUTO_INCREMENT de tabelas despejadas
---
-
---
--- AUTO_INCREMENT de tabela `administrador`
---
-ALTER TABLE `administrador`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de tabela `cliente`
---
-ALTER TABLE `cliente`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de tabela `compra`
---
-ALTER TABLE `compra`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de tabela `feedback`
---
-ALTER TABLE `feedback`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de tabela `gestao`
---
-ALTER TABLE `gestao`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de tabela `gestor`
---
-ALTER TABLE `gestor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de tabela `peca`
---
-ALTER TABLE `peca`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de tabela `resposta`
---
-ALTER TABLE `resposta`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  `id_gestor` int NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_gestor` (`id_gestor`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Restrições para despejos de tabelas
@@ -300,12 +236,6 @@ ALTER TABLE `feedback`
 ALTER TABLE `gestao`
   ADD CONSTRAINT `gestao_ibfk_1` FOREIGN KEY (`id_gestor`) REFERENCES `gestor` (`id`),
   ADD CONSTRAINT `gestao_ibfk_2` FOREIGN KEY (`id_peca`) REFERENCES `peca` (`id`);
-
---
--- Limitadores para a tabela `gestor`
---
-ALTER TABLE `gestor`
-  ADD CONSTRAINT `gestor_ibfk_1` FOREIGN KEY (`id_administrador`) REFERENCES `administrador` (`id`);
 
 --
 -- Limitadores para a tabela `resposta`
