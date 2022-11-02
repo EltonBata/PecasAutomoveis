@@ -81,3 +81,7 @@ input, select, textarea{
 .nav-link:hover {
     color: #b63340 !important;
 }
+
+.table{
+    font-size: 14px;
+}

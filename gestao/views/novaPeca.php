@@ -10,15 +10,15 @@
             <div class="container">
                 <div class="container">
                     <label class="form-label">Nome:</label>
-                    <input type="text" class="form-control" name="nome">
+                    <input type="text" class="form-control" name="nome" required>
                 </div>
                 <div class="container">
                     <label class="form-label">Tipo:</label>
-                    <input type="text" class="form-control" name="tipo">
+                    <input type="text" class="form-control" name="tipo" required>
                 </div>
                 <div class="container">
                     <label class="form-label">Marca:</label>
-                    <input type="text" class="form-control" name="marca">
+                    <input type="text" class="form-control" name="marca" required>
                 </div>
                 <div class="container">
                     <label class="form-label">Data de Fabrico:</label>
@@ -37,7 +37,7 @@
                 </div>
                 <div class="container">
                     <label class="form-label">Preco:</label>
-                    <input type="text" class="form-control" name="preco">
+                    <input type="text" class="form-control" name="preco" required>
                 </div>
                 <div class="container">
                     <label class="form-label">Status:</label>

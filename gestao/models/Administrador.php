@@ -18,9 +18,17 @@ class Administrador
 
     public function selectAll()
     {
-        $this->sql = $this->conexao->query("SELECT * FROM administrador");
+        $this->sql = $this->conexao->query("SELECT * FROM administrador JOIN perfil WHERE administrador.id = perfil.id");
         $this->sql->execute();
-        $this->dados = $this->sql->fetchAll(PDO::FETCH_ASSOC);
+        $this->dados = $this->sql->fetchAll(PDO::FETCH_OBJ);
+        return $this->dados;
+    }
+
+    public function selectOne($id)
+    {
+        $this->sql = $this->conexao->query("SELECT * FROM administrador WHERE id='$id'");
+        $this->sql->execute();
+        $this->dados = $this->sql->fetchAll(PDO::FETCH_OBJ);
         return $this->dados;
     }
 
@@ -37,6 +45,7 @@ class Administrador
         $this->sql = $this->conexao->prepare("INSERT INTO administrador (nome, apelido, data_nascimento, nacionalidade, nr_bi, sexo, morada, email, contactos) VALUES (:nome, :apelido, :data_nascimento, :nacionalidade, :nr_bi, :sexo, :morada, :email, :contactos)");
         $this->sql->execute($params);
         $this->conta = $this->sql->rowCount();
+        return $this->conta;
     }
 
     public function delete($id)

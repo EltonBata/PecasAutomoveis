@@ -10,23 +10,23 @@
 
                 <div class="container">
                     <label class="form-label">Nome:</label>
-                    <input type="text" class="form-control" name="nome">
+                    <input type="text" class="form-control" name="nome" required>
                 </div>
                 <div class="container">
                     <label class="form-label">Apelido:</label>
-                    <input type="text" class="form-control" name="apelido">
+                    <input type="text" class="form-control" name="apelido" required>
                 </div>
                 <div class="container">
                     <label class="form-label">Data de Nascimento:</label>
-                    <input type="date" class="form-control" name="data_nasc">
+                    <input type="date" class="form-control" name="data_nasc" required>
                 </div>
                 <div class="container">
                     <label class="form-label">Nacionalidade:</label>
-                    <input type="text" class="form-control" name="nacionalidade">
+                    <input type="text" class="form-control" name="nacionalidade" required>
                 </div>
                 <div class="container">
                     <label class="form-label">Numero de BI:</label>
-                    <input type="text" class="form-control" name="nrBI">
+                    <input type="text" class="form-control" name="nrBI" required>
                 </div>
                 <div class="container">
                     <label class="form-label">Sexo:</label>
@@ -37,18 +37,18 @@
                 </div>
                 <div class="container">
                     <label class="form-label">Email:</label>
-                    <input type="email" class="form-control" name="email">
+                    <input type="email" class="form-control" name="email" required>
                 </div>
             </div>
 
             <div class="container">
                 <div class="container">
                     <label class="form-label">Contactos:</label>
-                    <input type="text" class="form-control" name="contactos">
+                    <input type="text" class="form-control" name="contactos" required>
                 </div>
                 <div class="container">
                     <label class="form-label">Morada:</label>
-                    <textarea name="morada" cols="30" rows="10" class="form-control"></textarea>
+                    <textarea name="morada" cols="30" rows="10" class="form-control" required></textarea>
                 </div>
 
                 <div class="container">

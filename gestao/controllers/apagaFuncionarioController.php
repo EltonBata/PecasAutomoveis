@@ -1,7 +1,7 @@
 <?php
 include_once '../models/Administrador.php';
 
-class apagaFuncionarioController
+class ApagaFuncionarioController
 {
     private $perfil;
     private $funcionario;
@@ -9,7 +9,7 @@ class apagaFuncionarioController
     private $id;
 
     function apaga(){
-        if($_GET['perfil'] && $_GET['id']){
+        if(isset($_GET['perfil']) && isset($_GET['id'])){
             $this->perfil = $_GET['perfil'];
             $this->id = $_GET['id'];
             
