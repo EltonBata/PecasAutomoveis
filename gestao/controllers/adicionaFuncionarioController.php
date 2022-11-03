@@ -23,9 +23,10 @@ class AdicionaFuncionarioController
     private $email;
     private $contactos;
     private $perfil;
-    private $id_gestor = null;
-    private $id_administrador = null;
-    
+    private $id_gestor = "";
+    private $id_administrador = "";
+    private $senha = "";
+
 
     public function adiciona()
     {
@@ -42,6 +43,8 @@ class AdicionaFuncionarioController
             $this->email = $_POST['email'];
             $this->contactos = $_POST['contactos'];
             $this->perfil = $_POST['perfil'];
+            $this->senha = rand(1000,9999);
+
 
             //Os dados sao guardados no array dados[]
             $this->dados = [
@@ -56,14 +59,6 @@ class AdicionaFuncionarioController
                 'contactos' => $this->contactos
             ];
 
-            $this->dadosPerfil = [
-                'username' => $this->nome,
-                'password' => $this->password,
-                'perfil' => $this->perfil,
-                'id_gestor' => $this->id_gestor,
-                'id_administrador' => $this->id_administrador
-            ];
-
             $this->perfis = new Perfil();
 
             //Validacao do perfil
@@ -71,29 +66,79 @@ class AdicionaFuncionarioController
                 //caso o perfil seja Administrador os dados serao inseridos na tabela Administrador
                 $this->funcionario = new Administrador();
                 $this->operacao = $this->funcionario->insert($this->dados);
-                $this->operacaoPerfil = $this->perfis->insert($this->dadosPerfil);
 
-                //verifica se os dados foram inseridos
-                if ($this->operacao == 1 && $this->operacaoPerfil == 1) {
-                    $_SESSION['sucesso'] = "Funcionario inserido com sucesso";
-                    header("location: ../views/funcionarios.php");
+                //verifica se os dados foram inseridos na tabela Administrador
+                if ($this->operacao == 1) {
+                    
+                    //pega o id do administrador recem registrado
+                    $this->id_administrador = $this->funcionario->getLast()->id;
+                    
+                    $this->dadosPerfil = [
+                        'username' => $this->nome." ".$this->apelido,
+                        'senha' => password_hash($this->senha, PASSWORD_BCRYPT),
+                        'perfil' => $this->perfil,
+                        'id_gestor' => $this->id_gestor,
+                        'id_administrador' => $this->id_administrador
+                    ];
+
+                    $this->operacaoPerfil = $this->perfis->insert($this->dadosPerfil);
+                    var_dump($this->dadosPerfil);
+                    //verifica se o perfil adm foi inserido
+                    if ($this->operacaoPerfil == 1) {
+
+                        $_SESSION['sucesso'] = "Administrador inserido com sucesso. A sua senha é $this->senha";
+                        header("location: ../views/Administradores.php");
+                    } else {
+                        
+                        //caso o perfil nao seja adicionado o ultimo administrador sera apagado
+                        $this->funcionario->deleteLast();
+                        $_SESSION['erro'] = "Administrador não inserido!";
+                        header("location: ../views/Administradores.php");
+                    }
                 } else {
-                    $_SESSION['erro'] = "Funcionario não inserido!";
-                    header("location: ../views/funcionarios.php");
+                    $_SESSION['erro'] = "Administrador não inserido!";
+                    header("location: ../views/Administradores.php");
                 }
+
+
+                ///////////////////////////////////////////////////////////////////////////////////////////
             } else {
                 //caso o perfil seja Gestor os dados serao inseridos na tabela Gestor
                 $this->funcionario = new Gestor();
                 $this->operacao = $this->funcionario->insert($this->dados);
-                $this->operacaoPerfil = $this->perfis->insert($this->dadosPerfil);
 
                 //verifica se os dados foram inseridos
-                if ($this->operacao == 1 && $this->operacaoPerfil == 1) {
-                    $_SESSION['sucesso'] = "Funcionario inserido com sucesso";
-                    header("location: ../views/funcionarios.php");
+                if ($this->operacao == 1) {
+
+                    //pega o id do administrador recem registrado
+                    $this->id_gestor = $this->funcionario->getLast()->id;
+
+                    $this->dadosPerfil = [
+                        'username' => $this->nome,
+                        'senha' => password_hash($this->senha, PASSWORD_BCRYPT),
+                        'perfil' => $this->perfil,
+                        'id_gestor' => $this->id_gestor,
+                        'id_administrador' => $this->id_administrador
+                    ];
+
+                    $this->operacaoPerfil = $this->perfis->insert($this->dadosPerfil);
+
+                    //verifica se o perfil adm foi inserido
+                    if ($this->operacaoPerfil == 1) {
+
+                        $_SESSION['sucesso'] = "Gestor inserido com sucesso.  A sua senha é $this->senha";
+                        header("location: ../views/Gestores.php");
+                    } else {
+                        //caso o perfil nao seja adicionado o ultimo administrador sera apagado
+                        $this->funcionario->deleteLast();
+                        $_SESSION['erro'] = "Gestor não inserido!";
+                        header("location: ../views/Gestores.php");
+                    }
+
                 } else {
-                    $_SESSION['erro'] = "Funcionario não inserido!";
-                    header("location: ../views/funcionarios.php");
+            
+                    $_SESSION['erro'] = "Gestor não inserido!";
+                    header("location: ../views/Gestores.php");
                 }
             }
         }

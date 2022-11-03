@@ -24,10 +24,25 @@ class Perfil
         return $this->dados;
     }
 
-    
     public function insert($params = [])
     {
-        $this->sql = $this->conexao->prepare("INSERT INTO perfil (username, password, perfil, id_administrador, id_gestor) VALUES (:username, :password, :perfil, :id_administrador, :id_gestor)");
+        $this->sql = $this->conexao->prepare("INSERT INTO perfil (username, senha, perfil, id_administrador, id_gestor) VALUES (:username, :senha, :perfil, :id_administrador, :id_gestor)");
+        $this->sql->execute($params);
+        $this->conta = $this->sql->rowCount();
+        return $this->conta;
+    }
+
+    public function updateAdmin($params = [])
+    {
+        $this->sql = $this->conexao->prepare("UPDATE perfil SET username=:username WHERE id_administrador=:id");
+        $this->sql->execute($params);
+        $this->conta = $this->sql->rowCount();
+        return $this->conta;
+    }
+
+    public function updateGestor($params = [])
+    {
+        $this->sql = $this->conexao->prepare("UPDATE perfil SET username=:username WHERE id_gestor=:id");
         $this->sql->execute($params);
         $this->conta = $this->sql->rowCount();
         return $this->conta;

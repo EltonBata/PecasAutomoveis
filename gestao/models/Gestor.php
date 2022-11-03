@@ -3,11 +3,12 @@ include_once '../../config/db.php';
 
 class Gestor
 {
-    public $conexao;
-    public $sql;
-    public $conta;
-    public $dados = [];
-    public $dbConnection;
+    private $conexao;
+    private $sql;
+    private $conta;
+    private $dados = [];
+    private $dbConnection;
+    private $id;
 
     function __construct()
     {
@@ -18,7 +19,7 @@ class Gestor
 
     public function selectAll()
     {
-        $this->sql = $this->conexao->query("SELECT * FROM gestor JOIN perfil WHERE gestor.id = perfil.id");
+        $this->sql = $this->conexao->query("SELECT * FROM gestor JOIN perfil WHERE gestor.id = perfil.id_gestor");
         $this->sql->execute();
         $this->dados = $this->sql->fetchAll(PDO::FETCH_OBJ);
         return $this->dados;
@@ -26,15 +27,15 @@ class Gestor
 
      public function selectOne($id)
     {
-        $this->sql = $this->conexao->query("SELECT * FROM gestor WHERE id='$id'");
+        $this->sql = $this->conexao->query("SELECT * FROM gestor JOIN perfil WHERE gestor.id = perfil.id_gestor AND gestor.id='$id'");
         $this->sql->execute();
-        $this->dados = $this->sql->fetchAll(PDO::FETCH_OBJ);
+        $this->dados = $this->sql->fetch(PDO::FETCH_OBJ);
         return $this->dados;
     }
 
     public function count()
     {
-        $this->sql = $this->conexao->query("SELECT * FROM gestor");
+        $this->sql = $this->conexao->query("SELECT * FROM gestor JOIN perfil WHERE gestor.id = perfil.id_gestor");
         $this->sql->execute();
         $this->conta = $this->sql->rowCount();
         return $this->conta;
@@ -54,5 +55,28 @@ class Gestor
         $this->sql->execute();
         $this->conta = $this->sql->rowCount();
         return $this->conta;
+    }
+
+    public function update($params = [])
+    {
+        $this->sql = $this->conexao->prepare("UPDATE gestor SET nome=:nome, apelido=:apelido, data_nascimento=:data_nascimento, nacionalidade=:nacionalidade, nr_bi=:nr_bi, sexo=:sexo, morada=:morada, email=:email, contactos=:contactos WHERE id=:id");
+        $this->sql->execute($params);
+        $this->conta = $this->sql->rowCount();
+        return $this->conta;
+    }
+
+    public function getLast()
+    {
+        $this->sql = $this->conexao->query("SELECT id FROM gestor ORDER BY id LIMIT 1");
+        $this->sql->execute();
+        $this->dados = $this->sql->fetch(PDO::FETCH_OBJ);
+        return $this->dados;
+    }
+
+    public function deleteLast()
+    {
+        $this->id = $this->getLast()->id;
+        $this->sql = $this->conexao->query("DELETE FROM gestor WHERE id='$this->id'");
+        $this->sql->execute();
     }
 }

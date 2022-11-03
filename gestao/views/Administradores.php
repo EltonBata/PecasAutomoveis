@@ -5,30 +5,26 @@
 <div class="container conteudo col-sm-10 p-3">
 
     <?php if (isset($_SESSION['sucesso'])) { ?>
-        <div class="alert alert-success w-50 mx-auto">
-            <span class="btn btn-close"></span>
+        <div class="alert alert-success alert-dismissible w-50 mx-auto">
+            <button type="button" class="btn btn-close" data-bs-dismiss="alert"></button>
             <?php echo $_SESSION['sucesso'];
             unset($_SESSION['sucesso']); ?>
         </div>
         <?php } else {
         if (isset($_SESSION['erro'])) { ?>
-            <div class="alert alert-danger w-50 mx-auto">
-                <span class="btn btn-close"></span>
+            <div class="alert alert-danger alert-dismissible w-50 mx-auto">
+                <button type="button" class="btn btn-close" data-bs-dismiss="alert"></button>
                 <?php echo $_SESSION['erro'];
                 unset($_SESSION['erro']) ?>
             </div>
     <?php }
     } ?>
 
-    <h3 class="text-center"><i class="fa-solid fa-user-gear"></i> Funcionarios(100)</h3>
+    <h3 class="text-center"><i class="fa-solid fa-user-gear"></i> Administradores(<?php echo $totalAdmin; ?>)</h3>
 
-    <div class="container w-25 escolha-funcionario">
-        <form action="../controllers/verFuncionariosController.php" method="post">
-            <select name="perfil" id="perfil_funcionario" class="form-select">
-                <option value="admin">Administradores</option>
-                <option value="gestor">Gestores</option>
-            </select>
-        </form>
+    <div class="btn-group">
+        <a href="./Gestores.php" class="btn">Gestores</a>
+        <a href="#" class="btn disabled">Administradores</a>
     </div>
 
     <div class="container mt-2">
@@ -48,7 +44,7 @@
             </thead>
 
             <tbody>
-                <?php foreach ($dados as $key => $value) { ?>
+                <?php foreach ($admin as $key => $value) { ?>
                     <tr>
                         <td><?php echo $value->id; ?></td>
                         <td><?php echo $value->nr_bi; ?></td>
@@ -61,7 +57,7 @@
                         <td><?php echo $value->email; ?></td>
                         <td><?php echo $value->contactos; ?></td>
                         <td>
-                            <a href="../controllers/EditFuncionarioController.php?id=<?php echo $value->id ?>"><i class="fa-solid fa-pen"></i></a>
+                            <a href="./EditFuncionario.php?id=<?php echo $value->id; ?>&perfil=<?php echo $value->perfil; ?>"><i class="fa-solid fa-pen">edit</i></a>
                             <a href=""><i class="fa-solid fa-trash-can"></i></a>
                         </td>
                     <?php } ?>
@@ -69,6 +65,7 @@
         </table>
 
     </div>
+
     <div class="relatorio">
         <a href="" class="btn btn-danger"><i class="fa-solid fa-file-invoice"></i> Gerar Relatorio</a>
     </div>

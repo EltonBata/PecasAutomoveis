@@ -85,3 +85,9 @@ input, select, textarea{
 .table{
     font-size: 14px;
 }
+
+.btn-group a{
+
+    background-color: #424242;
+    color: whitesmoke;
+}

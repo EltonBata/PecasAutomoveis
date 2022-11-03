@@ -11,11 +11,6 @@ class EditFuncionario
     private $dados;
     private $id;
 
-    public function getDados()
-    {
-        return $this->dados;
-    }
-
     public function view()
     {
 
@@ -24,29 +19,30 @@ class EditFuncionario
             $this->perfil = $_GET['perfil'];
             $this->id = $_GET['id'];
 
-            if ($this->perfil == 'admin') {
+            if ($this->perfil == "admin") {
                 $this->funcionario = new Administrador();
                 $this->dados = $this->funcionario->selectOne($this->id);
+                return $this->dados;
             } else {
                 $this->funcionario = new Gestor();
                 $this->dados = $this->funcionario->selectOne($this->id);
+                return $this->dados;
             }
         }
     }
 }
 
 $editFuncionario = new EditFuncionario();
-$editFuncionario->view();
-$dados = $editFuncionario->getDados();
+$dados = $editFuncionario->view();
 
 ?>
 
 <div class="container conteudo col-sm-10 p-3">
 
     <h3 class="text-center"><i class="fa-solid fa-pen"></i> Editar Funcionario</h3>
-
+   
     <div class="mt-2">
-        <form action="../controllers/adicionaFuncionarioController.php" method="post" class="d-flex">
+        <form action="../controllers/EditFuncionarioController.php?id=<?php echo $dados->id ?>" method="post" class="d-flex">
             <div class="container">
 
                 <div class="container">
@@ -94,7 +90,7 @@ $dados = $editFuncionario->getDados();
 
                 <div class="container">
                     <label class="form-label">Perfil:</label>
-                    <select name="perfil" class="form-select" disabled value="">
+                    <select name="perfil" class="form-select" value="">
                         <?php if ($dados->perfil == 'admin') { ?>
                             <option value="admin">Administrador</option>
                         <?php } else { ?>

@@ -6,35 +6,46 @@ include_once '../models/Gestor.php';
 
 class VerFuncionarioController
 {
-    private $perfil;
     private $funcionario;
     private $dados;
 
-    public function getDados(){
+    public function getDados()
+    {
         return $this->dados;
     }
 
-    public function view()
+    public function administrador()
     {
 
-        if (isset($_POST['submit'])) {
+        $this->funcionario = new Administrador();
+        $this->dados = $this->funcionario->selectAll();
+        return $this->dados;
+    }
 
-            $this->perfil = $_POST['perfil'];
+    public function totalAdministradores()
+    {
+        $this->funcionario = new Administrador();
+        $this->dados = $this->funcionario->count();
+        return $this->dados;
+    }
 
-            if ($this->perfil == 'admin') {
-                $this->funcionario = new Administrador();
-                $this->dados = $this->funcionario->selectAll();
-            } else {
-                $this->funcionario = new Gestor();
-                $this->dados = $this->funcionario->selectAll();
-            }
-        }else{
-            $this->funcionario = new Gestor();
-            $this->dados = $this->funcionario->selectAll();
-        }
+    public function totalGestores()
+    {
+        $this->funcionario = new Gestor();
+        $this->dados = $this->funcionario->count();
+        return $this->dados;
+    }
+
+    public function gestor()
+    {
+        $this->funcionario = new Gestor();
+        $this->dados = $this->funcionario->selectAll();
+        return $this->dados;
     }
 }
 
 $verFuncionario = new VerFuncionarioController();
-$verFuncionario->view();
-$dados = $verFuncionario->getDados();
+$admin = $verFuncionario->administrador();
+$totalAdmin = $verFuncionario->totalAdministradores();
+$gestor = $verFuncionario->gestor();
+$totalGestores = $verFuncionario->totalGestores();
