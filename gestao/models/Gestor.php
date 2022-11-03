@@ -67,7 +67,7 @@ class Gestor
 
     public function getLast()
     {
-        $this->sql = $this->conexao->query("SELECT id FROM gestor ORDER BY id LIMIT 1");
+        $this->sql = $this->conexao->query("SELECT id FROM gestor ORDER BY id DESC LIMIT 1");
         $this->sql->execute();
         $this->dados = $this->sql->fetch(PDO::FETCH_OBJ);
         return $this->dados;

@@ -4,6 +4,7 @@
 
 <div class="container conteudo col-sm-10 p-3">
 
+
     <?php if (isset($_SESSION['sucesso'])) { ?>
         <div class="alert alert-success alert-dismissible w-50 mx-auto">
             <button type="button" class="btn btn-close" data-bs-dismiss="alert"></button>
@@ -56,11 +57,34 @@
                         <td><?php echo $value->morada; ?></td>
                         <td><?php echo $value->email; ?></td>
                         <td><?php echo $value->contactos; ?></td>
-                        <td>
-                            <a href="./EditFuncionario.php?id=<?php echo $value->id ?>&perfil=<?php echo $value->perfil; ?>"><i class="fa-solid fa-pen">edit</i></a>
-                            <a href=""><i class="fa-solid fa-trash-can"></i></a>
+                        <td style="text-align: center;" class="accoes">
+                            <a href="./EditFuncionario.php?id=<?php echo $value->id ?>&perfil=<?php echo $value->perfil; ?>"><i class="fa-solid fa-pen"></i></a>
+                            <a href="" data-bs-toggle='modal' data-bs-target="#delete"><i class="fa-solid fa-trash-can"></i></a>
                         </td>
+
+                        <div class="modal" id="delete">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Apagar Gestor</h4>
+                                    </div>
+
+                                    <div class="modal-body">
+                                        Deseja apagar o Gestor <?php echo $value->nome." ".$value->apelido ?>?
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <a href="../controllers/ApagaFuncionarioController.php?id=<?php echo $value->id ?>&perfil=gestor" class="btn btn-danger">Sim</a>
+                                        <button type="button" data-bs-dismiss="modal" class="btn btn-secondary">Não</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
                     <?php } ?>
+
+
+
             </tbody>
         </table>
 

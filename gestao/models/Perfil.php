@@ -48,9 +48,17 @@ class Perfil
         return $this->conta;
     }
 
-    public function delete($id)
+    public function deleteAdmin($id)
     {
-        $this->sql = $this->conexao->prepare("DELETE FROM perfil WHERE id='$id'");
+        $this->sql = $this->conexao->prepare("DELETE FROM perfil WHERE id_administrador='$id'");
+        $this->sql->execute();
+        $this->conta = $this->sql->rowCount();
+        return $this->conta;
+    }
+
+    public function deleteGestor($id)
+    {
+        $this->sql = $this->conexao->prepare("DELETE FROM perfil WHERE id_gestor='$id'");
         $this->sql->execute();
         $this->conta = $this->sql->rowCount();
         return $this->conta;

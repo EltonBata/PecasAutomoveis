@@ -91,3 +91,7 @@ input, select, textarea{
     background-color: #424242;
     color: whitesmoke;
 }
+
+.accoes a{
+    color: #424242;
+}
