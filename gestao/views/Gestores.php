@@ -1,5 +1,11 @@
-<?php include_once '../controllers/verFuncionariosController.php'; ?>
 <?php include_once './head.php'; ?>
+<?php
+if (!isset($_SESSION['username'])) {
+    header("location: ../index.php");
+}
+include_once '../controllers/verFuncionariosController.php';
+?>
+
 
 <div class="container conteudo col-sm-10 p-3">
 
@@ -40,7 +46,7 @@
                 <th>Morada</th>
                 <th>Email</th>
                 <th>Contactos</th>
-                <th>Accoes</th>
+                <th></th>
             </thead>
 
             <tbody>
@@ -58,7 +64,7 @@
                         <td><?php echo $value->contactos; ?></td>
                         <td style="text-align: center;" class="accoes">
                             <div class="dropdown">
-                                <button type="button" class=" btn dropdown-toggle" data-bs-toggle="dropdown"></button>
+                                <button type="button" class=" btn dropdown-toggle" data-bs-toggle="dropdown" <?php if ($head->getPerfil() == "gestor") { ?> hidden <?php } ?>></button>
                                 <ul class="dropdown-menu">
                                     <li>
                                         <a href="./EditFuncionario.php?id=<?php echo $value->id; ?>&perfil=<?php echo $value->perfil; ?>" class="dropdown-item">

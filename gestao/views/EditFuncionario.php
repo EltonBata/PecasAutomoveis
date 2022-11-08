@@ -1,6 +1,10 @@
 <?php
-session_start();
 include_once './head.php';
+if (!isset($_SESSION['username'])) {
+    header("location: ../index.php");
+}
+
+
 include_once '../models/Administrador.php';
 include_once '../models/Gestor.php';
 
@@ -40,7 +44,7 @@ $dados = $editFuncionario->view();
 <div class="container conteudo col-sm-10 p-3">
 
     <h3 class="text-center"><i class="fa-solid fa-pen"></i> Editar Funcionario</h3>
-   
+
     <div class="mt-2">
         <form action="../controllers/EditFuncionarioController.php?id=<?php echo $dados->id ?>" method="post" class="d-flex">
             <div class="container">

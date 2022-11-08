@@ -1,6 +1,10 @@
 <?php
 session_start();
 
+if (!isset($_SESSION['username'])) {
+    header("location: ../index.php");
+}
+
 class Head
 {
     private $perfil;
@@ -69,7 +73,7 @@ $head = new Head();
             </a>
             <ul class="navbar-nav w-100">
                 <li class="nav-item">
-                    <a href="./verPecas.php" class="nav-link">Home</a>
+                    <a href="./verPecas.php" class="nav-link"><i class="fa-solid fa-house"></i> Home</a>
                 </li>
                 <li class="nav-item user-parent dropdown dropstart">
 
@@ -77,7 +81,7 @@ $head = new Head();
                     <ul class="dropdown-menu">
                         <li class="dropdown-header"><?php echo $head->getUserName(); ?></li>
                         <li>
-                            <a href="#" data-bs-toggle='modal' data-bs-target="#alterar-senha" class="dropdown-item">Mudar minha senha</a>
+                            <a href="#" data-bs-toggle='modal' data-bs-target="#alterar-senha" class="dropdown-item" <?php if($head->getPerfil() == "gestor"){ ?> hidden <?php } ?>>Mudar minha senha</a>
                         </li>
                         <li>
                             <a href="../controllers/LogoutController.php" class="dropdown-item">Logout</a>
@@ -138,7 +142,7 @@ $head = new Head();
                     </li>
                     <hr>
                     <li class="nav-item">
-                        <a href="./adicionarFuncionario.php" class="nav-link"><i class="fa-solid fa-user-plus"></i> Novo Funcionario</a>
+                        <a href="./adicionarFuncionario.php" class="nav-link" <?php if($head->getPerfil() == "gestor"){ ?> hidden <?php } ?>><i class="fa-solid fa-user-plus"></i> Novo Funcionario</a>
                     </li>
                     <li class="nav-item">
                         <a href="./Gestores.php" class="nav-link"><i class="fa-solid fa-user-gear"></i> Funcionarios</a>

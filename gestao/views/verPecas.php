@@ -1,4 +1,9 @@
-<?php include_once './head.php'; ?>
+<?php
+include_once './head.php';
+if (!isset($_SESSION['username'])) {
+    header("location: ../index.php");
+}
+?>
 
 <div class="container conteudo col-sm-10 p-3">
 
@@ -17,7 +22,7 @@
             </div>
     <?php }
     } ?>
-    
+
     <h3 class="text-center">
         <?php if (isset($_GET['status'])) {
 
