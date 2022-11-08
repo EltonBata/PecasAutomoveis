@@ -21,7 +21,8 @@ class AdicionaFuncionarioController
     private $sexo;
     private $morada;
     private $email;
-    private $contactos;
+    private $contacto1;
+    private $contacto2;
     private $perfil;
     private $id_gestor = "";
     private $id_administrador = "";
@@ -41,7 +42,8 @@ class AdicionaFuncionarioController
             $this->sexo = $_POST['sexo'];
             $this->morada = $_POST['morada'];
             $this->email = $_POST['email'];
-            $this->contactos = $_POST['contactos'];
+            $this->contacto1 = $_POST['contacto1'];
+            $this->contacto2 = $_POST['contacto2'];
             $this->perfil = $_POST['perfil'];
             $this->senha = rand(1000,9999);
 
@@ -56,7 +58,7 @@ class AdicionaFuncionarioController
                 'sexo' => $this->sexo,
                 'morada' => $this->morada,
                 'email' => $this->email,
-                'contactos' => $this->contactos
+                'contactos' => $this->contacto1.", ".$this->contacto2
             ];
 
             $this->perfis = new Perfil();
@@ -86,17 +88,17 @@ class AdicionaFuncionarioController
                     //verifica se o perfil adm foi inserido
                     if ($this->operacaoPerfil == 1) {
 
-                        $_SESSION['sucesso'] = "Administrador inserido com sucesso. A sua senha é $this->senha";
+                        $_SESSION['sucesso'] = "Administrador(a) inserido(a) com sucesso. A sua senha é $this->senha";
                         header("location: ../views/Administradores.php");
                     } else {
                         
                         //caso o perfil nao seja adicionado o ultimo administrador sera apagado
                         $this->funcionario->deleteLast();
-                        $_SESSION['erro'] = "Administrador não inserido!";
+                        $_SESSION['erro'] = "Administrador(a) não inserido!";
                         header("location: ../views/Administradores.php");
                     }
                 } else {
-                    $_SESSION['erro'] = "Administrador não inserido!";
+                    $_SESSION['erro'] = "Administrador(a) não inserido!";
                     header("location: ../views/Administradores.php");
                 }
 
@@ -126,18 +128,18 @@ class AdicionaFuncionarioController
                     //verifica se o perfil adm foi inserido
                     if ($this->operacaoPerfil == 1) {
 
-                        $_SESSION['sucesso'] = "Gestor inserido com sucesso.  A sua senha é $this->senha";
+                        $_SESSION['sucesso'] = "Gestor(a) inserido(a) com sucesso.  A sua senha é $this->senha";
                         header("location: ../views/Gestores.php");
                     } else {
                         //caso o perfil nao seja adicionado o ultimo administrador sera apagado
                         $this->funcionario->deleteLast();
-                        $_SESSION['erro'] = "Gestor não inserido!";
+                        $_SESSION['erro'] = "Gestor(a) não inserido!";
                         header("location: ../views/Gestores.php");
                     }
 
                 } else {
             
-                    $_SESSION['erro'] = "Gestor não inserido!";
+                    $_SESSION['erro'] = "Gestor(a) não inserido!";
                     header("location: ../views/Gestores.php");
                 }
             }

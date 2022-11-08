@@ -2,7 +2,18 @@
 
 <div class="container conteudo col-sm-10 p-3">
 
-    <h3 class="text-center">Pecas Registradas</h3>
+    <h3 class="text-center">
+        <?php if (isset($_GET['status'])) {
+
+            if ($_GET['status'] == 'disponivel') {  ?>
+                Pecas Disponiveis
+            <?php  } else { ?>
+                Pecas Indisponiveis
+            <?php }
+        } else { ?>
+            Todas Pecas
+        <?php } ?>
+    </h3>
 
     <div class="container mt-2">
         <table class="table">

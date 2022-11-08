@@ -10,11 +10,11 @@
 
                 <div class="container">
                     <label class="form-label">Nome:</label>
-                    <input type="text" class="form-control" name="nome" required>
+                    <input type="text" class="form-control" name="nome" required placeholder="Introduz primeiro nome">
                 </div>
                 <div class="container">
                     <label class="form-label">Apelido:</label>
-                    <input type="text" class="form-control" name="apelido" required>
+                    <input type="text" class="form-control" name="apelido" required placeholder="Introduz apelido">
                 </div>
                 <div class="container">
                     <label class="form-label">Data de Nascimento:</label>
@@ -22,11 +22,11 @@
                 </div>
                 <div class="container">
                     <label class="form-label">Nacionalidade:</label>
-                    <input type="text" class="form-control" name="nacionalidade" required>
+                    <input type="text" class="form-control" name="nacionalidade" required placeholder="Introduz nacionalidade">
                 </div>
                 <div class="container">
                     <label class="form-label">Numero de BI:</label>
-                    <input type="text" class="form-control" name="nrBI" required>
+                    <input type="text" class="form-control" name="nrBI" required placeholder="Introduz numero de Identificacao">
                 </div>
                 <div class="container">
                     <label class="form-label">Sexo:</label>
@@ -37,18 +37,21 @@
                 </div>
                 <div class="container">
                     <label class="form-label">Email:</label>
-                    <input type="email" class="form-control" name="email" required>
+                    <input type="email" class="form-control" name="email" required placeholder="Introduz o email">
                 </div>
             </div>
 
             <div class="container">
                 <div class="container">
                     <label class="form-label">Contactos:</label>
-                    <input type="text" class="form-control" name="contactos" required>
+                    <div class="d-flex">
+                        <input type="text" class="form-control" name="contacto1" required placeholder="Introduz contacto principal">
+                        <input type="text" class="form-control" name="contacto2" placeholder="Introduz contacto secundario">
+                    </div>
                 </div>
                 <div class="container">
-                    <label class="form-label">Morada:</label>
-                    <textarea name="morada" cols="30" rows="10" class="form-control" required></textarea>
+                    <label class="form-label">Endereco:</label>
+                    <textarea name="morada" cols="30" rows="10" class="form-control" required placeholder="Introduz endereco"></textarea>
                 </div>
 
                 <div class="container">

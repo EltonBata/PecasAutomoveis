@@ -1,6 +1,5 @@
-<?php include_once './head.php'; ?>
-
 <?php include_once '../controllers/verFuncionariosController.php'; ?>
+<?php include_once './head.php'; ?>
 
 <div class="container conteudo col-sm-10 p-3">
 
@@ -40,7 +39,7 @@
                 <th>Morada</th>
                 <th>Email</th>
                 <th>Contactos</th>
-                <th>Accoes</th>
+                <th></th>
             </thead>
 
             <tbody>
@@ -57,19 +56,39 @@
                         <td><?php echo $value->email; ?></td>
                         <td><?php echo $value->contactos; ?></td>
                         <td style="text-align: center;" class="accoes">
-                            <a href="./EditFuncionario.php?id=<?php echo $value->id; ?>&perfil=<?php echo $value->perfil; ?>"><i class="fa-solid fa-pen"></i></a>
-                            <a href="#" data-bs-toggle='modal' data-bs-target="#delete"><i class="fa-solid fa-trash-can"></i></a>
+
+                            <div class="dropdown">
+                                <button type="button" class=" btn dropdown-toggle" data-bs-toggle="dropdown"></button>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="./EditFuncionario.php?id=<?php echo $value->id; ?>&perfil=<?php echo $value->perfil; ?>" class="dropdown-item">
+                                            <i class="fa-solid fa-pen"></i> Editar
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" data-bs-toggle='modal' data-bs-target="#delete<?php echo $value->id ?>" class="dropdown-item">
+                                            <i class="fa-solid fa-trash-can"></i> Apagar
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" data-bs-toggle='modal' data-bs-target="#alterar-senha<?php echo $value->id ?>" class="dropdown-item">
+                                            <i class="fa-solid fa-key"></i> Alterar senha
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+
                         </td>
 
-                        <div class="modal" id="delete">
-                            <div class="modal-dialog">
+                        <div class="modal" id="delete<?php echo $value->id ?>">
+                            <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h4 class="modal-title">Apagar Administrador</h4>
+                                        <h4 class="modal-title"> <i class="fa-solid fa-trash-can"></i> Apagar Administrador</h4>
                                     </div>
 
                                     <div class="modal-body">
-                                        Deseja apagar o administrador <?php echo $value->nome." ".$value->apelido ?>?
+                                        Deseja apagar o administrador <?php echo $value->nome . " " . $value->apelido ?>?
                                     </div>
 
                                     <div class="modal-footer">
@@ -80,6 +99,27 @@
 
                             </div>
                         </div>
+
+                        <div class="modal" id="alterar-senha<?php echo $value->id ?>">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title"><i class="fa-solid fa-key"></i> Alterar senha</h4>
+                                    </div>
+
+                                    <div class="modal-body">
+                                        Deseja alterar a senha do administrador <?php echo $value->nome . " " . $value->apelido ?>?
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <a href="../controllers/AlterarSenhaController.php?id=<?php echo $value->id ?>&perfil=admin" class="btn btn-danger">Sim</a>
+                                        <button type="button" data-bs-dismiss="modal" class="btn btn-secondary">Não</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        
                     <?php } ?>
             </tbody>
         </table>
@@ -94,4 +134,3 @@
 </div>
 
 <?php include_once './foot.php'; ?>
-<script src="../../assets/js/gestao.js"></script>

@@ -95,3 +95,24 @@ input, select, textarea{
 .accoes a{
     color: #424242;
 }
+
+.user{
+   
+    color: #424242 !important;
+    background-color: #bdbdbd;
+    width: 50px;
+    height: 50px;
+
+    font-size: 20px;
+}
+
+.user-parent{
+    position: absolute !important;
+    right: 20px !important;
+
+}
+
+.dropdown-item{
+    color: #424242 !important;
+}
+

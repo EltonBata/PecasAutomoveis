@@ -1,6 +1,6 @@
-<?php include_once './head.php'; ?>
 <?php
 session_start();
+include_once './head.php';
 include_once '../models/Administrador.php';
 include_once '../models/Gestor.php';
 

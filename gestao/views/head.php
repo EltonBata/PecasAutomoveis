@@ -21,12 +21,23 @@
             <a href="#" class="navbar-brand">
                 <img src="../../assets/fotos/logo.png" alt="" class="logo">
             </a>
-            <ul class="navbar-nav">
+            <ul class="navbar-nav w-100">
                 <li class="nav-item">
                     <a href="./verPecas.php" class="nav-link">Home</a>
                 </li>
-                <li class="nav-item">
-                    <a href="" class="nav-link">Logout(Elton Bata)</a>
+                <li class="nav-item user-parent dropdown dropstart">
+                    
+                    <a href="" class="nav-link user rounded-circle dropdown-toggle" data-bs-toggle="dropdown">E</a>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-header">Elton Bata</li>
+                        <li>
+                            <a href="" class="dropdown-item">Mudar minha senha</a>
+                        </li>
+                        <li>
+                            <a href="" class="dropdown-item">Logout</a>
+                        </li>
+                    </ul>
+
                 </li>
             </ul>
         </nav>

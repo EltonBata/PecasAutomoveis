@@ -83,13 +83,13 @@ class EditFuncionarioController
 
                         if($this->operacaoPerfil == 1){
 
-                            $_SESSION['sucesso'] = "Administrador actualizado com sucesso.";
+                            $_SESSION['sucesso'] = "Administrador(a) actualizado(a) com sucesso.";
                             header("location: ../views/Administradores.php");
                         }
                        
                     } else {
                         
-                        $_SESSION['erro'] = "Administrador não actualizado!";
+                        $_SESSION['erro'] = "Administrador(a) não actualizado(a)!";
                         header("location: ../views/Administradores.php");
                     }
 
@@ -109,11 +109,11 @@ class EditFuncionarioController
 
                         }
                         
-                        $_SESSION['sucesso'] = "Gestor actualizado com sucesso.";
+                        $_SESSION['sucesso'] = "Gestor(a) actualizado(a) com sucesso.";
                         header("location: ../views/Gestores.php");
                     } else {
                         
-                        $_SESSION['erro'] = "Gestor não actualizado!";
+                        $_SESSION['erro'] = "Gestor(a) não actualizado(a)!";
                         header("location: ../views/Gestores.php");
                     }
                 }

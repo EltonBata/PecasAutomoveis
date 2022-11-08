@@ -16,9 +16,9 @@ class Perfil
         return $this->conexao;
     }
 
-     public function selectOne($id)
+    public function selectOne($id)
     {
-        $this->sql = $this->conexao->query("SELECT * FROM perfil WHERE id='$id'");
+        $this->sql = $this->conexao->query("SELECT * FROM perfil WHERE id_perfil='$id'");
         $this->sql->execute();
         $this->dados = $this->sql->fetchAll(PDO::FETCH_OBJ);
         return $this->dados;
@@ -63,4 +63,20 @@ class Perfil
         $this->conta = $this->sql->rowCount();
         return $this->conta;
     }
+
+    public function alterarSenha($params = [])
+    {
+        $this->sql = $this->conexao->prepare("UPDATE perfil SET senha=:senha WHERE id_perfil=:id");
+        $this->sql->execute($params);
+        $this->conta = $this->sql->rowCount();
+        return $this->conta;
+    }
+
+    // public function login($params = [])
+    // {
+    //     $this->sql = $this->conexao->query("SELECT * FROM perfil WHERE username=:username AND senha=:senha");
+    //     $this->sql->execute($params);
+    //     $this->dados = $this->sql->rowCount();
+    //     return $this->dados;
+    // }
 }
