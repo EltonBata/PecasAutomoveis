@@ -3,11 +3,11 @@ include_once '../../config/db.php';
 
 class Perfil
 {
-    public $conexao;
-    public $sql;
-    public $conta;
-    public $dados = [];
-    public $dbConnection;
+   private $conexao;
+   private $sql;
+   private $conta;
+   private $dados = [];
+   private $dbConnection;
 
     function __construct()
     {
@@ -72,11 +72,11 @@ class Perfil
         return $this->conta;
     }
 
-    // public function login($params = [])
-    // {
-    //     $this->sql = $this->conexao->query("SELECT * FROM perfil WHERE username=:username AND senha=:senha");
-    //     $this->sql->execute($params);
-    //     $this->dados = $this->sql->rowCount();
-    //     return $this->dados;
-    // }
+    public function login($params)
+    {
+        $this->sql = $this->conexao->query("SELECT * FROM perfil WHERE username='$params'");
+        $this->sql->execute();
+        $this->dados = $this->sql->fetch(PDO::FETCH_OBJ);
+        return $this->dados;
+    }
 }

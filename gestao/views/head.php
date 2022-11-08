@@ -1,3 +1,40 @@
+<?php
+session_start();
+
+class Head
+{
+    private $perfil;
+    private $username;
+    private $userLetra;
+
+    function __construct()
+    {
+        if (isset($_SESSION['username']) && isset($_SESSION['perfil'])) {
+
+            $this->perfil = $_SESSION['perfil'];
+            $this->username = $_SESSION['username'];
+            $this->userLetra = $this->username[0];
+            
+        }
+    }
+
+    
+    public function getUserName(){
+        return $this->username;
+    }
+
+    public function getPerfil(){
+        return $this->perfil;
+    }
+
+    public function getUserLetra(){
+        return $this->userLetra;
+    }
+}
+
+$head = new Head();
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,10 +63,10 @@
                     <a href="./verPecas.php" class="nav-link">Home</a>
                 </li>
                 <li class="nav-item user-parent dropdown dropstart">
-                    
-                    <a href="" class="nav-link user rounded-circle dropdown-toggle" data-bs-toggle="dropdown">E</a>
+
+                    <a href="" class="nav-link user rounded-circle dropdown-toggle" data-bs-toggle="dropdown"><?php echo $head->getUserLetra(); ?></a>
                     <ul class="dropdown-menu">
-                        <li class="dropdown-header">Elton Bata</li>
+                        <li class="dropdown-header"><?php echo $head->getUserName(); ?></li>
                         <li>
                             <a href="" class="dropdown-item">Mudar minha senha</a>
                         </li>
