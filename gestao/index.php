@@ -20,7 +20,7 @@
         <div class="container logo border border-2 rounded-circle d-flex justify-content-center align-items-center"></div>
 
         
-        <form action="" method="post" class="mt-5">
+        <form action="./controllers/LoginFuncionario.php" method="post" class="mt-5">
         <div class="input-group">
             <span class="input-group-text"><i class="fa-solid fa-user-gear"></i></span>
             <input type="text" name="username" class="form-control" placeholder="Introduza o seu username">
