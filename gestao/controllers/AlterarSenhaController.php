@@ -22,11 +22,11 @@ class AlterarSenhaController
     {
         $this->senha = rand(1000, 9999);
 
+        $this->perfis = new Perfil();
+
         if (isset($_GET['id']) && isset($_GET['perfil'])) {
             $this->id = $_GET['id'];
             $this->perfil = $_GET['perfil'];
-
-            $this->perfis = new Perfil();
 
             if ($this->perfil == 'admin') {
 
@@ -65,6 +65,27 @@ class AlterarSenhaController
                 } else {
                     $_SESSION['erro'] = "Erro ao tentar alterar a senha";
                     header("location: ../views/Gestores.php");
+                }
+            }
+        } else {
+
+            if (isset($_GET['id'])) {
+                
+                $this->id = $_GET['id'];
+                
+                $this->dados2 = [
+                    'senha' => password_hash($this->senha, PASSWORD_BCRYPT),
+                    'id' => $this->id
+                ];
+
+               
+                $this->operacao = $this->perfis->alterarSenha($this->dados2);
+                if ($this->operacao == 1) {
+                    $_SESSION['sucesso'] = "Senha alterada com sucesso. A tua nova senha é $this->senha!";
+                    header("location: ../views/verPecas.php");
+                } else {
+                    $_SESSION['erro'] = "Erro ao tentar alterar a senha";
+                    header("location: ../views/verPecas.php");
                 }
             }
         }

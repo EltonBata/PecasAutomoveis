@@ -33,6 +33,7 @@ class LoginFuncionario
                 if ($this->verificaSenha) {
                     $_SESSION['username'] = $this->dados->username;
                     $_SESSION['perfil'] = $this->dados->perfil;
+                    $_SESSION['id'] = $this->dados->id_perfil;
                     header("location: ../views/verPecas.php");
                 } else {
                     $_SESSION['erro'] =  "Usuario ou Senha incorrectos";

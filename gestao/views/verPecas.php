@@ -2,6 +2,22 @@
 
 <div class="container conteudo col-sm-10 p-3">
 
+    <?php if (isset($_SESSION['sucesso'])) { ?>
+        <div class="alert alert-success alert-dismissible w-50 mx-auto">
+            <button type="button" class="btn btn-close" data-bs-dismiss="alert"></button>
+            <?php echo $_SESSION['sucesso'];
+            unset($_SESSION['sucesso']); ?>
+        </div>
+        <?php } else {
+        if (isset($_SESSION['erro'])) { ?>
+            <div class="alert alert-danger alert-dismissible w-50 mx-auto">
+                <button type="button" class="btn btn-close" data-bs-dismiss="alert"></button>
+                <?php echo $_SESSION['erro'];
+                unset($_SESSION['erro']) ?>
+            </div>
+    <?php }
+    } ?>
+    
     <h3 class="text-center">
         <?php if (isset($_GET['status'])) {
 

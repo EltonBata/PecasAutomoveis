@@ -6,29 +6,38 @@ class Head
     private $perfil;
     private $username;
     private $userLetra;
+    private $id;
 
     function __construct()
     {
-        if (isset($_SESSION['username']) && isset($_SESSION['perfil'])) {
+        if (isset($_SESSION['username']) && isset($_SESSION['perfil']) && isset($_SESSION['id'])) {
 
             $this->perfil = $_SESSION['perfil'];
             $this->username = $_SESSION['username'];
+            $this->id = $_SESSION['id'];
             $this->userLetra = $this->username[0];
-            
         }
     }
 
-    
-    public function getUserName(){
+
+    public function getUserName()
+    {
         return $this->username;
     }
 
-    public function getPerfil(){
+    public function getPerfil()
+    {
         return $this->perfil;
     }
 
-    public function getUserLetra(){
+    public function getUserLetra()
+    {
         return $this->userLetra;
+    }
+
+    public function getId()
+    {
+        return $this->id;
     }
 }
 
@@ -68,16 +77,36 @@ $head = new Head();
                     <ul class="dropdown-menu">
                         <li class="dropdown-header"><?php echo $head->getUserName(); ?></li>
                         <li>
-                            <a href="" class="dropdown-item">Mudar minha senha</a>
+                            <a href="#" data-bs-toggle='modal' data-bs-target="#alterar-senha" class="dropdown-item">Mudar minha senha</a>
                         </li>
                         <li>
-                            <a href="" class="dropdown-item">Logout</a>
+                            <a href="../controllers/LogoutController.php" class="dropdown-item">Logout</a>
                         </li>
                     </ul>
 
                 </li>
             </ul>
         </nav>
+    </div>
+
+    <div class="modal" id="alterar-senha">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title"><i class="fa-solid fa-key"></i> Alterar senha</h4>
+                </div>
+
+                <div class="modal-body">
+                    Deseja alterar a tua senha?
+                </div>
+
+                <div class="modal-footer">
+                    <a href="../controllers/AlterarSenhaController.php?id=<?php echo $head->getId(); ?>" class="btn btn-danger">Sim</a>
+                    <button type="button" data-bs-dismiss="modal" class="btn btn-secondary">Não</button>
+                </div>
+            </div>
+
+        </div>
     </div>
 
     <div class="container-fluid principal p-0">
