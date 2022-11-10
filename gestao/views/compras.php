@@ -1,5 +1,10 @@
-<?php include_once '../controllers/verComprasController.php'; ?>
 <?php include_once './head.php'; ?>
+<?php
+if (!isset($_SESSION['username'])) {
+    header("location: ../index.php");
+}
+include_once '../controllers/verComprasController.php';
+?>
 
 <div class="container conteudo col-sm-10 p-3">
 
@@ -16,7 +21,7 @@
                 <th>Quantidade</th>
                 <th>Desconto</th>
                 <th>Total Pago</th>
-                
+
             </thead>
 
             <tbody>
@@ -28,9 +33,9 @@
                         <td><?php echo $value->local_entrega ?></td>
                         <td><?php echo $value->status ?></td>
                         <td><?php echo $value->quantidade ?></td>
-                        <td><?php echo $value->desconto."%" ?></td>
+                        <td><?php echo $value->desconto . "%" ?></td>
                         <td><?php echo $value->total_pago ?></td>
-                      
+
                     </tr>
                 <?php } ?>
             </tbody>

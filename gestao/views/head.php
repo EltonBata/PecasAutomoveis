@@ -1,34 +1,47 @@
 <?php
 session_start();
 
+if (!isset($_SESSION['username'])) {
+    header("location: ../index.php");
+}
+
 class Head
 {
     private $perfil;
     private $username;
     private $userLetra;
+    private $id;
 
     function __construct()
     {
-        if (isset($_SESSION['username']) && isset($_SESSION['perfil'])) {
+        if (isset($_SESSION['username']) && isset($_SESSION['perfil']) && isset($_SESSION['id'])) {
 
             $this->perfil = $_SESSION['perfil'];
             $this->username = $_SESSION['username'];
+            $this->id = $_SESSION['id'];
             $this->userLetra = $this->username[0];
-            
         }
     }
 
-    
-    public function getUserName(){
+
+    public function getUserName()
+    {
         return $this->username;
     }
 
-    public function getPerfil(){
+    public function getPerfil()
+    {
         return $this->perfil;
     }
 
-    public function getUserLetra(){
+    public function getUserLetra()
+    {
         return $this->userLetra;
+    }
+
+    public function getId()
+    {
+        return $this->id;
     }
 }
 
@@ -60,7 +73,7 @@ $head = new Head();
             </a>
             <ul class="navbar-nav w-100">
                 <li class="nav-item">
-                    <a href="./verPecas.php" class="nav-link">Home</a>
+                    <a href="./verPecas.php" class="nav-link"><i class="fa-solid fa-house"></i> Home</a>
                 </li>
                 <li class="nav-item user-parent dropdown dropstart">
 
@@ -68,16 +81,36 @@ $head = new Head();
                     <ul class="dropdown-menu">
                         <li class="dropdown-header"><?php echo $head->getUserName(); ?></li>
                         <li>
-                            <a href="" class="dropdown-item">Mudar minha senha</a>
+                            <a href="#" data-bs-toggle='modal' data-bs-target="#alterar-senha" class="dropdown-item" <?php if($head->getPerfil() == "gestor"){ ?> hidden <?php } ?>>Mudar minha senha</a>
                         </li>
                         <li>
-                            <a href="" class="dropdown-item">Logout</a>
+                            <a href="../controllers/LogoutController.php" class="dropdown-item">Logout</a>
                         </li>
                     </ul>
 
                 </li>
             </ul>
         </nav>
+    </div>
+
+    <div class="modal" id="alterar-senha">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title"><i class="fa-solid fa-key"></i> Alterar senha</h4>
+                </div>
+
+                <div class="modal-body">
+                    Deseja alterar a tua senha?
+                </div>
+
+                <div class="modal-footer">
+                    <a href="../controllers/AlterarSenhaController.php?id=<?php echo $head->getId(); ?>" class="btn btn-danger">Sim</a>
+                    <button type="button" data-bs-dismiss="modal" class="btn btn-secondary">Não</button>
+                </div>
+            </div>
+
+        </div>
     </div>
 
     <div class="container-fluid principal p-0">
@@ -109,7 +142,7 @@ $head = new Head();
                     </li>
                     <hr>
                     <li class="nav-item">
-                        <a href="./adicionarFuncionario.php" class="nav-link"><i class="fa-solid fa-user-plus"></i> Novo Funcionario</a>
+                        <a href="./adicionarFuncionario.php" class="nav-link" <?php if($head->getPerfil() == "gestor"){ ?> hidden <?php } ?>><i class="fa-solid fa-user-plus"></i> Novo Funcionario</a>
                     </li>
                     <li class="nav-item">
                         <a href="./Gestores.php" class="nav-link"><i class="fa-solid fa-user-gear"></i> Funcionarios</a>
