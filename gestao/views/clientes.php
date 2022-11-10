@@ -28,12 +28,12 @@ if (!isset($_SESSION['username'])) {
                 <?php foreach ($cliente as $key => $value) { ?>
                     <tr>
                         <td><?php echo $value->id; ?></td>
+                        <td><?php echo $value->nr_bi; ?></td>
                         <td><?php echo $value->nome; ?></td>
                         <td><?php echo $value->apelido; ?></td>
                         <td><?php echo $value->email; ?></td>
                         <td><?php echo $value->contactos; ?></td>
                         <td><?php echo $value->morada; ?></td>
-                        <td><?php echo $value->nr_bi; ?></td>
                         <?php }?>
 
             </tbody>
