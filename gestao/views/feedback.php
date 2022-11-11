@@ -3,6 +3,7 @@ include_once './head.php';
 if (!isset($_SESSION['username'])) {
     header("location: ../index.php");
 }
+ include_once '../controllers/Verfeedback.php'; 
 ?>
 
 <div class="container conteudo col-sm-10 p-3">
@@ -17,8 +18,19 @@ if (!isset($_SESSION['username'])) {
                 <th>Mensagem</th>
                 <th>Data</th>
                 <th>Resposta</th>
-                <th>Accao</th>
+
             </thead>
+            <tbody>
+                <?php foreach ($feedback as $key => $value) { ?>
+                    <tr>
+                        <td><?php echo $value->id; ?></td>
+                        <td><?php echo $value->nome; ?></td>
+                        <td><?php echo $value->mensagem; ?></td>
+                        <td><?php echo $value->data; ?></td>
+                        <td><?php echo $value->resposta; ?></td>
+                        <?php }?>
+
+            </tbody>
         </table>
 
     </div>
