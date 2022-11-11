@@ -1,5 +1,7 @@
 <?php
-include_once '../../config/db.php';
+// require '../../config/db.php';
+?>
+<?php
 
 class Peca
 {

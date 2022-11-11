@@ -1,5 +1,6 @@
 <?php
-include_once './models/Peca.php';
+include_once '../cliente/models/Peca.php';
+include '../config/db.php';
 //include_once './models/Upload.php';
 
 class ClienteIndex
@@ -15,9 +16,18 @@ class ClienteIndex
         $this->dados = $this->peca->selectAll();
         return $this->dados;
     }
+
+    function __construct()
+    {
+        $this->dbConnection = new dbConnection();
+        $this->conexao = $this->dbConnection->connect();
+        return $this->conexao;
+    }
 }
 
+
 $index = new ClienteIndex();
+$index->__construct();
 $dados = $index->peca();
 
 ?>
