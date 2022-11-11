@@ -10,7 +10,7 @@ if (!isset($_SESSION['username'])) {
 
 <div class="container conteudo col-sm-10 p-3">
 
-    <h3 class="text-center"><i class="fa-solid fa-users-gear"></i> (<?php echo $totalClientes; ?>)</h3>
+    <h3 class="text-center"><i class="fa-solid fa-users-gear"></i> Cliente (<?php echo $totalClientes; ?>)</h3>
 
     <div class="container mt-2">
         <table class="table">

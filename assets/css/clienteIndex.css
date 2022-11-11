@@ -1,22 +1,13 @@
+.nav-link{
+    color: white !important;
+    font-weight: bold;
+    font-size: 18px;
+}
 
-body{
-    background-color: 	#9f9f9f;
-    overflow-y: hidden;
-    
+.navbar-brand img{
+    width: 80px;
 }
-button{
-    background-color: aquamarine;
-}
-button  a {
-    text-decoration:none;
-    color: black;
-}
-.logo{
-    width: 50px;
-    height: 50px;
-    background-image: url(../fotos/logo.png);
-    background-position: center;
-    background-size: cover;
-    background-color: #9f9f9f;
-    color: whitesmoke;
+
+.navbar{
+    background-color: #9f9f9f !important;
 }
