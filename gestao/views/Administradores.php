@@ -25,17 +25,19 @@ if (!isset($_SESSION['username'])) {
     <?php }
     } ?>
 
-    <h3 class="text-center"><i class="fa-solid fa-user-gear"></i> Administradores(<?php echo $totalAdmin; ?>)</h3>
+    <h3 class="text-center"><i class="fa-solid fa-user-gear"></i> Administradores (<?php echo $totalAdmin; ?>)</h3>
 
-    <div class="btn-group">
+    <div class="btn-group fload-start">
         <a href="./Gestores.php" class="btn">Gestores</a>
         <a href="#" class="btn disabled">Administradores</a>
     </div>
 
+
+
     <div class="container mt-2">
         <table class="table table-striped">
             <thead>
-                <th>ID</th>
+                <th>Nr</th>
                 <th>Numero de BI</th>
                 <th>Nome</th>
                 <th>Apelido</th>
@@ -49,9 +51,12 @@ if (!isset($_SESSION['username'])) {
             </thead>
 
             <tbody>
-                <?php foreach ($admin as $key => $value) { ?>
+                <?php
+                $count = 1;
+                foreach ($admin as $key => $value) {
+                ?>
                     <tr>
-                        <td><?php echo $value->id; ?></td>
+                        <td><?php echo $count; ?></td>
                         <td><?php echo $value->nr_bi; ?></td>
                         <td><?php echo $value->nome; ?></td>
                         <td><?php echo $value->apelido; ?></td>
@@ -126,7 +131,8 @@ if (!isset($_SESSION['username'])) {
                             </div>
                         </div>
 
-                    <?php } ?>
+                    <?php $count++;
+                } ?>
             </tbody>
         </table>
 
@@ -138,5 +144,5 @@ if (!isset($_SESSION['username'])) {
 </div>
 
 </div>
-
+<script src="../../assets/js/gestao.js"></script>
 <?php include_once './foot.php'; ?>

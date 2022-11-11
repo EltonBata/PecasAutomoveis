@@ -26,7 +26,7 @@ include_once '../controllers/verFuncionariosController.php';
     <?php }
     } ?>
 
-    <h3 class="text-center"><i class="fa-solid fa-user-gear"></i> Gestores(<?php echo $totalGestores; ?>)</h3>
+    <h3 class="text-center"><i class="fa-solid fa-user-gear"></i> Gestores (<?php echo $totalGestores; ?>)</h3>
 
     <div class="btn-group">
         <a href="#" class="btn disabled">Gestores</a>
@@ -36,7 +36,7 @@ include_once '../controllers/verFuncionariosController.php';
     <div class="container mt-2">
         <table class="table table-striped">
             <thead>
-                <th>ID</th>
+                <th>Nr</th>
                 <th>Numero de BI</th>
                 <th>Nome</th>
                 <th>Apelido</th>
@@ -50,9 +50,12 @@ include_once '../controllers/verFuncionariosController.php';
             </thead>
 
             <tbody>
-                <?php foreach ($gestor as $key => $value) { ?>
+                <?php 
+                    $count = 1;
+                    foreach ($gestor as $key => $value) { 
+                ?>
                     <tr>
-                        <td><?php echo $value->id; ?></td>
+                        <td><?php echo $count; ?></td>
                         <td><?php echo $value->nr_bi; ?></td>
                         <td><?php echo $value->nome; ?></td>
                         <td><?php echo $value->apelido; ?></td>
@@ -125,7 +128,7 @@ include_once '../controllers/verFuncionariosController.php';
 
                             </div>
                         </div>
-                    <?php } ?>
+                    <?php $count++; } ?>
 
 
 

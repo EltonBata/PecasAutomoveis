@@ -32,6 +32,11 @@ th{
     color: #424242;
 }
 
+td{
+    text-align: center;
+    line-height: 50px;
+}
+
 li a{
     font-weight: bold;
     color: whitesmoke !important;
@@ -116,3 +121,20 @@ input, select, textarea{
     color: #424242 !important;
 }
 
+.fotos{
+    height: 300px;
+    overflow-y: auto;
+}
+
+.imagem{
+    width: 50px;
+}
+
+.accoes{
+    line-height: normal;
+}
+
+.img-close{
+    position: relative;
+    top: 10px;
+}

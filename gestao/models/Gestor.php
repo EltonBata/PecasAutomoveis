@@ -19,7 +19,7 @@ class Gestor
 
     public function selectAll()
     {
-        $this->sql = $this->conexao->query("SELECT * FROM gestor JOIN perfil WHERE gestor.id = perfil.id_gestor");
+        $this->sql = $this->conexao->query("SELECT * FROM gestor JOIN perfil WHERE gestor.id = perfil.id_gestor ORDER BY nome ASC");
         $this->sql->execute();
         $this->dados = $this->sql->fetchAll(PDO::FETCH_OBJ);
         return $this->dados;

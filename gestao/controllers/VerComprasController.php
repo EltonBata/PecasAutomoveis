@@ -1,5 +1,4 @@
 <?php
-session_start();
 include_once '../models/Compra.php';
 
 
@@ -24,15 +23,15 @@ class VerComprasController
 
     public function totalCompras()
     {
-        $this->funcionario = new Compra();
-        $this->dados = $this->funcionario->count();
+        $this->compra = new Compra();
+        $this->dados = $this->compra->count();
         return $this->dados;
     }
 
-    
 }
 
 $verCompras = new VerComprasController();
 $compras = $verCompras->compras();
 $totalCompras = $verCompras->totalCompras();
+
 

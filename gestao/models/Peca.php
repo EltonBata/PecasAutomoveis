@@ -1,7 +1,7 @@
 <?php
 include_once '../../config/db.php';
 
-class Administrador
+class Peca
 {
     private $conexao;
     private $sql;
@@ -19,7 +19,15 @@ class Administrador
 
     public function selectAll()
     {
-        $this->sql = $this->conexao->query("SELECT * FROM administrador JOIN perfil WHERE administrador.id = perfil.id_administrador ORDER BY nome ASC");
+        $this->sql = $this->conexao->query("SELECT * FROM peca ORDER BY nome ASC");
+        $this->sql->execute();
+        $this->dados = $this->sql->fetchAll(PDO::FETCH_OBJ);
+        return $this->dados;
+    }
+
+    public function selectStatus($status)
+    {
+        $this->sql = $this->conexao->query("SELECT * FROM peca WHERE status='$status' ORDER BY nome ASC");
         $this->sql->execute();
         $this->dados = $this->sql->fetchAll(PDO::FETCH_OBJ);
         return $this->dados;
@@ -27,16 +35,23 @@ class Administrador
 
     public function selectOne($id)
     {
-        $this->sql = $this->conexao->query("SELECT * FROM administrador JOIN perfil WHERE administrador.id = perfil.id_administrador AND administrador.id='$id'");
+        $this->sql = $this->conexao->query("SELECT * FROM peca WHERE id='$id'");
         $this->sql->execute();
         $this->dados = $this->sql->fetch(PDO::FETCH_OBJ);
         return $this->dados;
     }
 
-
     public function count()
     {
-        $this->sql = $this->conexao->query("SELECT * FROM administrador JOIN perfil WHERE administrador.id = perfil.id_administrador");
+        $this->sql = $this->conexao->query("SELECT * FROM peca");
+        $this->sql->execute();
+        $this->conta = $this->sql->rowCount();
+        return $this->conta;
+    }
+
+    public function countStatus($status)
+    {
+        $this->sql = $this->conexao->query("SELECT * FROM peca WHERE status='$status'");
         $this->sql->execute();
         $this->conta = $this->sql->rowCount();
         return $this->conta;
@@ -44,7 +59,7 @@ class Administrador
 
     public function insert($params = [])
     {
-        $this->sql = $this->conexao->prepare("INSERT INTO administrador (nome, apelido, data_nascimento, nacionalidade, nr_bi, sexo, morada, email, contactos) VALUES (:nome, :apelido, :data_nascimento, :nacionalidade, :nr_bi, :sexo, :morada, :email, :contactos)");
+        $this->sql = $this->conexao->prepare("INSERT INTO peca (nome, tipo, tamanho, marca, preco, data_fabrico, local_fabrico, cor, status, quantidade) VALUES (:nome, :tipo, :tamanho, :marca, :preco, :data_fabrico, :local_fabrico, :cor, :status, :quantidade)");
         $this->sql->execute($params);
         $this->conta = $this->sql->rowCount();
         return $this->conta;
@@ -52,7 +67,7 @@ class Administrador
 
     public function delete($id)
     {
-        $this->sql = $this->conexao->prepare("DELETE FROM administrador WHERE id='$id'");
+        $this->sql = $this->conexao->prepare("DELETE FROM peca WHERE id='$id'");
         $this->sql->execute();
         $this->conta = $this->sql->rowCount();
         return $this->conta;
@@ -60,7 +75,7 @@ class Administrador
 
     public function update($params = [])
     {
-        $this->sql = $this->conexao->prepare("UPDATE administrador SET nome=:nome, apelido=:apelido, data_nascimento=:data_nascimento, nacionalidade=:nacionalidade, nr_bi=:nr_bi, sexo=:sexo, morada=:morada, email=:email, contactos=:contactos WHERE id=:id");
+        $this->sql = $this->conexao->prepare("UPDATE peca SET nome=:nome, tipo=:tipo, tamanho=:tamanho, marca=:marca, preco=:preco, data_fabrico=:data_fabrico, local_fabrico=:local_fabrico, cor=:cor, status=:status, quantidade=:quantidade WHERE id=:id");
         $this->sql->execute($params);
         $this->conta = $this->sql->rowCount();
         return $this->conta;
@@ -68,7 +83,7 @@ class Administrador
 
     public function getLast()
     {
-        $this->sql = $this->conexao->query("SELECT id FROM administrador ORDER BY id DESC LIMIT 1");
+        $this->sql = $this->conexao->query("SELECT id FROM peca ORDER BY id DESC LIMIT 1");
         $this->sql->execute();
         $this->dados = $this->sql->fetch(PDO::FETCH_OBJ);
         return $this->dados;
@@ -77,7 +92,7 @@ class Administrador
     public function deleteLast()
     {
         $this->id = $this->getLast()->id;
-        $this->sql = $this->conexao->query("DELETE FROM administrador WHERE id='$this->id'");
+        $this->sql = $this->conexao->query("DELETE FROM peca WHERE id='$this->id'");
         $this->sql->execute();
     }
 }

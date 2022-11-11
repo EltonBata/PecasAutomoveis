@@ -1,5 +1,6 @@
 <?php
 session_start();
+include_once '../models/Compra.php';
 
 if (!isset($_SESSION['username'])) {
     header("location: ../index.php");
@@ -11,6 +12,7 @@ class Head
     private $username;
     private $userLetra;
     private $id;
+    private $compras;
 
     function __construct()
     {
@@ -42,6 +44,13 @@ class Head
     public function getId()
     {
         return $this->id;
+    }
+
+    public function totalComprasPendentes()
+    {
+        $this->compras = new Compra();
+        $this->dados = $this->compras->countStatus();
+        return $this->dados;
     }
 }
 
@@ -131,7 +140,7 @@ $head = new Head();
                     <hr>
                     <li class="nav-item d-flex align-items-center">
                         <a href="./compras.php" class="nav-link"><i class="fa-solid fa-cart-shopping"></i> Compras</a>
-                        <span class="rounded-circle ms-2 d-flex justify-content-center align-items-center">5</span>
+                        <span class="rounded-circle ms-2 d-flex justify-content-center align-items-center"><?php echo $head->totalComprasPendentes(); ?></span>
                     </li>
                     <li class="nav-item">
                         <a href="./clientes.php" class="nav-link"><i class="fa-solid fa-users-gear"></i> Clientes</a>
@@ -149,7 +158,7 @@ $head = new Head();
                     </li>
                     <hr>
                     <li class="nav-item">
-                        <a href="./gestao.php" class="nav-link"><i class="fa-solid fa-list-check"></i> Gestao</a>
+                        <a href="./Estatisticas.php" class="nav-link"><i class="fa-solid fa-chart-line"></i> Estatisticas</a>
                     </li>
                 </ul>
             </nav>

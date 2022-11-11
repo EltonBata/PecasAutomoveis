@@ -8,14 +8,9 @@ class VerFuncionarioController
     private $funcionario;
     private $dados;
 
-    public function getDados()
-    {
-        return $this->dados;
-    }
 
     public function administrador()
     {
-
         $this->funcionario = new Administrador();
         $this->dados = $this->funcionario->selectAll();
         return $this->dados;

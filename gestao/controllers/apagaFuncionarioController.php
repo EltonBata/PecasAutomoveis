@@ -25,7 +25,7 @@ class ApagaFuncionarioController
                 $this->funcionario = new Administrador();
                 $this->operacao = $this->funcionario->delete($this->id);
                 $this->operacaoPerfil = $this->perfis->deleteAdmin($this->id);
-                var_dump($this->operacao);
+                
                 if ($this->operacao == 1 && $this->operacaoPerfil == 1) {
                     $_SESSION['sucesso'] = "Administrador(a) apagado(a) com sucesso";
                     header("location: ../views/Administradores.php");

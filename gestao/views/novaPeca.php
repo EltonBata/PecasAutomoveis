@@ -10,7 +10,7 @@ if (!isset($_SESSION['username'])) {
     <h3 class="text-center"><i class="fa-solid fa-wrench"></i> Adicionar Nova Peca</h3>
 
     <div class="mt-2 d-flex mt-5">
-        <form action="" method="post" class="w-75 d-flex">
+        <form action="../controllers/AdicionaPecaController.php" method="post" class="w-100 d-flex" enctype="multipart/form-data">
 
             <div class="container">
                 <div class="container">
@@ -22,8 +22,16 @@ if (!isset($_SESSION['username'])) {
                     <input type="text" class="form-control" name="tipo" required>
                 </div>
                 <div class="container">
+                    <label class="form-label">Tamanho:</label>
+                    <input type="text" class="form-control" name="tamanho" required>
+                </div>
+                <div class="container">
                     <label class="form-label">Marca:</label>
                     <input type="text" class="form-control" name="marca" required>
+                </div>
+                <div class="container">
+                    <label class="form-label">Quantidade:</label>
+                    <input type="text" class="form-control" name="quantidade" required>
                 </div>
                 <div class="container">
                     <label class="form-label">Data de Fabrico:</label>
@@ -56,12 +64,13 @@ if (!isset($_SESSION['username'])) {
                     <button class="btn btn-danger">Cancelar</button>
                 </div>
             </div>
+            <div class="container mt-4">
+                <input type="file" name="fotos[]" multiple class="upload mt-1">
+                <button class="btn btn-primary container">Selecione fotos da peca</button>
+            </div>
         </form>
 
-        <form action="" class="mt-4 w-25">
-            <input type="file" name="fotos" class="upload mt-1">
-            <button class="btn btn-primary container">Selecione fotos da peca</button>
-        </form>
+       
     </div>
 
 </div>
