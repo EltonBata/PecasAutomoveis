@@ -1,8 +1,6 @@
 <?php
 include_once '../models/Compra.php';
 
-
-
 class VerComprasController
 {
     private $compra;

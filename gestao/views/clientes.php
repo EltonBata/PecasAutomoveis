@@ -15,7 +15,7 @@ if (!isset($_SESSION['username'])) {
     <div class="container mt-2">
         <table class="table">
             <thead>
-                <th>ID</th>
+                <th>Nr</th>
                 <th>Numero de BI</th>
                 <th>Nome</th>
                 <th>Apelido</th>
@@ -23,21 +23,25 @@ if (!isset($_SESSION['username'])) {
                 <th>Contactos</th>
                 <th>Morada</th>
             </thead>
-     
-        <tbody>
-                <?php foreach ($cliente as $key => $value) { ?>
+
+            <tbody>
+                <?php
+                $count = 1;
+                foreach ($cliente as $key => $value) {
+                ?>
                     <tr>
-                        <td><?php echo $value->id; ?></td>
-                        <td><?php echo $value->nr_bi; ?></td>
-                        <td><?php echo $value->nome; ?></td>
-                        <td><?php echo $value->apelido; ?></td>
-                        <td><?php echo $value->email; ?></td>
-                        <td><?php echo $value->contactos; ?></td>
-                        <td><?php echo $value->morada; ?></td>
-                        <?php }?>
+                        <td class="text-start"><?php echo $count; ?></td>
+                        <td class="text-start"><?php echo $value->nr_bi; ?></td>
+                        <td class="text-start"><?php echo $value->nome; ?></td>
+                        <td class="text-start"><?php echo $value->apelido; ?></td>
+                        <td class="text-start"><?php echo $value->email; ?></td>
+                        <td class="text-start"><?php echo $value->contactos; ?></td>
+                        <td class="text-start"><?php echo $value->morada; ?></td>
+                    <?php $count++;
+                } ?>
 
             </tbody>
-            </table> 
+        </table>
 
     </div>
     <div class="relatorio">

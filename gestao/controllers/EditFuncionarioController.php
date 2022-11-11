@@ -52,7 +52,7 @@ class EditFuncionarioController
 
                 //Os dados sao guardados no array dados[]
                 $this->dados = [
-                    'nome' => $this->nome." ".$this->apelido,
+                    'nome' => $this->nome,
                     'apelido' => $this->apelido,
                     'data_nascimento' => $this->data_nasc,
                     'nacionalidade' => $this->nacionalidade,
