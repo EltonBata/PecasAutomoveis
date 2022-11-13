@@ -36,7 +36,14 @@ if (!isset($_SESSION['username'])) {
                 <?php echo $_SESSION['erro'];
                 unset($_SESSION['erro']) ?>
             </div>
-    <?php }
+        <?php } else { 
+            if(isset($_SESSION['alerta'])){ ?>
+            <div class="alert alert-warning alert-dismissible w-50 mx-auto">
+                <button type="button" class="btn btn-close" data-bs-dismiss="alert"></button>
+                <?php echo $_SESSION['alerta'];
+                unset($_SESSION['alerta']) ?>
+            </div>
+    <?php } }
     } ?>
 
 
@@ -60,12 +67,13 @@ if (!isset($_SESSION['username'])) {
             <tbody>
                 <?php
                 $count = 1;
-                foreach ($peca as $key => $value) { $img = $verPeca->upload($value->id);
+                foreach ($peca as $key => $value) {
+                    $img = $verPeca->upload($value->id);
                 ?>
                     <tr>
                         <td><?php echo $count ?></td>
                         <td>
-                            <?php if(!empty($img)){ ?> <img src="../../uploads/<?php echo $value->id ?>/<?php echo $img->nome ?>" class="img-fluid imagem" alt=""> <?php } ?>
+                            <?php if (!empty($img)) { ?> <img src="../../uploads/<?php echo $value->id ?>/<?php echo $img->nome ?>" class="img-fluid imagem" alt=""> <?php } ?>
                         </td>
                         <td><?php echo $value->nome ?></td>
                         <td><?php echo $value->tipo ?></td>

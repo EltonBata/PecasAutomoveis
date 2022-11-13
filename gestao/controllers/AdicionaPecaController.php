@@ -1,6 +1,7 @@
 <?php
 session_start();
 include_once '../models/Peca.php';
+include_once '../models/Upload.php';
 
 class AdicionaPecaController
 {
@@ -17,11 +18,17 @@ class AdicionaPecaController
     private $dados = [];
     private $peca;
     private $operacao;
-    private $target_dir;
-    private $target_file;
+    private $pasta;
+    private $temporario;
+    private $novoNome;
     private $id;
     private $formatos = [];
     private $extensao;
+    private $nrArquivos;
+    private $contador;
+    private $contador2 = 0;
+    private $controlador = true;
+    private $upload;
 
     public function adicionaPeca()
     {
@@ -58,44 +65,60 @@ class AdicionaPecaController
 
             if ($this->operacao == 1) {
 
-                // //upload
-                // $this->id = $this->peca->getLast()->id;
+                //upload
+                $this->id = $this->peca->getLast()->id;
 
-                // $this->formatos = ['png', 'jpg', 'jpeg', 'git'];
+                mkdir("../../uploads/$this->id", 0700);
 
-                // mkdir("../../uploads/$this->id", 0700);
+                $this->formatos = ['png', 'jpg', 'jpeg', 'git'];
+                $this->nrArquivos = count($_FILES['fotos']['name']);
+                $this->contador = 0;
 
-                // $this->target_dir = "../../uploads/$this->id/";
+                while ($this->contador < $this->nrArquivos) {
 
-                // $count = 0;
-                // foreach ($_FILES as $file) {
-                //     var_dump($file["name"][$count]);
-                //     $this->target_file = $this->target_dir.$file['name'][$count];
-                //     $this->extensao = strtolower(pathinfo($this->target_file, PATHINFO_EXTENSION));
+                    $this->extensao = pathinfo($_FILES['fotos']['name'][$this->contador], PATHINFO_EXTENSION);
 
-                //     if (in_array($this->extensao, $this->formatos)) {
+                    if (in_array($this->extensao, $this->formatos)) {
 
-                //         if (move_uploaded_file($file['tmp_name'][$count], $this->target_file)) {
-                //             $_SESSION['sucesso'] = "Peca adicionada com sucesso";
-                //            // header("location: ../views/verPecas.php?status=$this->status");
-                //         } else {
-                //             $this->peca->deleteLast();
-                //             $this->id = $this->peca->getLast()->id;
-                //             rmdir("../../uploads/$this->id/");
-                //             $_SESSION['erro'] = "Erro ao tentar adicionar peca!";
-                //            // header("location: ../views/verPecas.php");
-                //         }
-                    } else {
-                        $this->peca->deleteLast();
-                        $this->id = $this->peca->getLast()->id;
-                        rmdir("../../uploads/$this->id/");
-                        $_SESSION['erro'] = "Erro ao tentar adicionar peca!";
-                       // header("location: ../views/verPecas.php");
+                        $this->pasta = "../../uploads/$this->id/";
+                        $this->temporario = $_FILES['fotos']['tmp_name'][$this->contador];
+                        $this->novoNome = uniqid() . "." . $this->extensao;
+
+                        if (!move_uploaded_file($this->temporario, $this->pasta . $this->novoNome)) {
+                            $this->controlador = false;
+                            $this->contador2++;
+                        } else {
+                            $this->upload = new Upload();
+
+                            $this->dados = [
+                                'nome' => $this->novoNome,
+                                'id_peca' => $this->id,
+                            ];
+
+                            $this->operacao = $this->upload->insert($this->dados);
+                        }
                     }
-                    
+
+                    $this->contador++;
                 }
+
+                if (!$this->controlador) {
+                    $_SESSION['alerta'] = "Peca adicionada com sucesso. Porem não foi possivel fazer upload de $this->contador2 fotos";
+                } else {
+                    $_SESSION['sucesso'] = "Peca adicionada com sucesso";
+                }
+
+                header("location: ../views/verPecas.php");
+            } else {
+                $this->peca->deleteLast();
+                $this->id = $this->peca->getLast()->id;
+                rmdir("../../uploads/$this->id/");
+                $_SESSION['erro'] = "Erro ao tentar adicionar peca!";
+                header("location: ../views/verPecas.php");
             }
         }
+    }
+}
 
 
 $adicionaPeca = new AdicionaPecaController();

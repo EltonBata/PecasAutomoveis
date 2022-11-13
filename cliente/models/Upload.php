@@ -1,5 +1,5 @@
 <?php
-include_once '../../config/db.php';
+//include_once '../../config/db.php';
 
 class Upload
 {
@@ -17,7 +17,6 @@ class Upload
         return $this->conexao;
     }
 
-   
 
     public function selectAll($id)
     {
@@ -33,31 +32,6 @@ class Upload
         $this->sql->execute();
         $this->dados = $this->sql->fetch(PDO::FETCH_OBJ);
         return $this->dados;
-    }
-
-    public function count($id)
-    {
-        $this->sql = $this->conexao->query("SELECT * FROM upload WHERE id_peca='$id'");
-        $this->sql->execute();
-        $this->conta = $this->sql->rowCount();
-        return $this->conta;
-    }
-
-
-    public function insert($params = [])
-    {
-        $this->sql = $this->conexao->prepare("INSERT INTO upload (nome, id_peca) VALUES (:nome, :id_peca)");
-        $this->sql->execute($params);
-        $this->conta = $this->sql->rowCount();
-        return $this->conta;
-    }
-
-    public function delete($id)
-    {
-        $this->sql = $this->conexao->prepare("DELETE FROM upload WHERE id_peca='$id'");
-        $this->sql->execute();
-        $this->conta = $this->sql->rowCount();
-        return $this->conta;
     }
 
   

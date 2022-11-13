@@ -1,3 +1,6 @@
+body{
+    overflow-x: hidden;
+}
 .nav-link{
     color: white !important;
     font-weight: bold;
@@ -10,4 +13,29 @@
 
 .navbar{
     background-color: #9f9f9f !important;
+}
+
+.nav-item{
+    margin-left: 20px;
+}
+
+.carrinho{
+    position: absolute;
+    right: 20px;
+}
+
+.btn-secondary{
+    position: absolute;
+    top: 50%;
+}
+
+.pecas{
+    width: 250px;
+    
+}
+
+.pecas:hover {
+   cursor: pointer;
+    width: 255px;
+  
 }
