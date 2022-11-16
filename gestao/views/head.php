@@ -82,7 +82,7 @@ $head = new Head();
             </a>
             <ul class="navbar-nav w-100">
                 <li class="nav-item">
-                    <a href="./verPecas.php" class="nav-link"><i class="fa-solid fa-house"></i> Home</a>
+                    <a href="./VerPecas.php" class="nav-link"><i class="fa-solid fa-house"></i> Home</a>
                 </li>
                 <li class="nav-item user-parent dropdown dropstart">
 
@@ -129,29 +129,29 @@ $head = new Head();
 
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a href="./novaPeca.php" class="nav-link"><i class="fa-solid fa-wrench"></i> Nova Peca</a>
+                        <a href="./NovaPeca.php" class="nav-link"><i class="fa-solid fa-wrench"></i> Nova Peca</a>
                     </li>
                     <li class="nav-item">
-                        <a href="./verPecas.php?status=disponivel" class="nav-link"><i class="fa-solid fa-eye"></i> Pecas Disponiveis</a>
+                        <a href="./VerPecas.php?status=disponivel" class="nav-link"><i class="fa-solid fa-eye"></i> Pecas Disponiveis</a>
                     </li>
                     <li class="nav-item">
-                        <a href="./verPecas.php?status=indisponivel" class="nav-link"><i class="fa-solid fa-eye-slash"></i> Pecas Indisponiveis</a>
+                        <a href="./VerPecas.php?status=indisponivel" class="nav-link"><i class="fa-solid fa-eye-slash"></i> Pecas Indisponiveis</a>
                     </li>
                     <hr>
                     <li class="nav-item d-flex align-items-center">
-                        <a href="./compras.php" class="nav-link"><i class="fa-solid fa-cart-shopping"></i> Compras</a>
+                        <a href="./Compras.php" class="nav-link"><i class="fa-solid fa-cart-shopping"></i> Compras</a>
                         <span class="rounded-circle ms-2 d-flex justify-content-center align-items-center"><?php echo $head->totalComprasPendentes(); ?></span>
                     </li>
                     <li class="nav-item">
-                        <a href="./clientes.php" class="nav-link"><i class="fa-solid fa-users-gear"></i> Clientes</a>
+                        <a href="./Clientes.php" class="nav-link"><i class="fa-solid fa-users-gear"></i> Clientes</a>
                     </li>
                     <li class="nav-item d-flex align-items-center">
-                        <a href="./feedback.php" class="nav-link"><i class="fa-solid fa-comment"></i> Feedbacks</a>
+                        <a href="./Feedback.php" class="nav-link"><i class="fa-solid fa-comment"></i> Feedbacks</a>
                         <span class="rounded-circle ms-2 d-flex justify-content-center align-items-center">5</span>
                     </li>
                     <hr>
                     <li class="nav-item">
-                        <a href="./adicionarFuncionario.php" class="nav-link" <?php if($head->getPerfil() == "gestor"){ ?> hidden <?php } ?>><i class="fa-solid fa-user-plus"></i> Novo Funcionario</a>
+                        <a href="./AdicionarFuncionario.php" class="nav-link" <?php if($head->getPerfil() == "gestor"){ ?> hidden <?php } ?>><i class="fa-solid fa-user-plus"></i> Novo Funcionario</a>
                     </li>
                     <li class="nav-item">
                         <a href="./Gestores.php" class="nav-link"><i class="fa-solid fa-user-gear"></i> Funcionarios</a>

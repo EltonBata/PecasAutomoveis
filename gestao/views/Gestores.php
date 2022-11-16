@@ -3,7 +3,7 @@
 if (!isset($_SESSION['username'])) {
     header("location: ../index.php");
 }
-include_once '../controllers/verFuncionariosController.php';
+include_once '../controllers/VerFuncionariosController.php';
 ?>
 
 

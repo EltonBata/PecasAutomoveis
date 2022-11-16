@@ -82,10 +82,10 @@ class AlterarSenhaController
                 $this->operacao = $this->perfis->alterarSenha($this->dados2);
                 if ($this->operacao == 1) {
                     $_SESSION['sucesso'] = "Senha alterada com sucesso. A tua nova senha é $this->senha!";
-                    header("location: ../views/verPecas.php");
+                    header("location: ../views/VerPecas.php");
                 } else {
                     $_SESSION['erro'] = "Erro ao tentar alterar a senha";
-                    header("location: ../views/verPecas.php");
+                    header("location: ../views/VerPecas.php");
                 }
             }
         }

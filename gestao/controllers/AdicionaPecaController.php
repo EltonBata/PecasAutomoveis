@@ -35,16 +35,16 @@ class AdicionaPecaController
 
         if ($_SERVER['REQUEST'] = 'POST') {
 
-            $this->nome = $_POST['nome'];
-            $this->tamanho = $_POST['tamanho'];
-            $this->marca = $_POST['marca'];
-            $this->quantidade = $_POST['quantidade'];
-            $this->data_fabrico = $_POST['data_fabrico'];
-            $this->local_fabrico = $_POST['local_fabrico'];
-            $this->preco = $_POST['preco'];
-            $this->cor = $_POST['cor'];
-            $this->status = $_POST['status'];
-            $this->tipo = $_POST['tipo'];
+            $this->nome = trim($_POST['nome']);
+            $this->tamanho = trim($_POST['tamanho']);
+            $this->marca = trim($_POST['marca']);
+            $this->quantidade = trim($_POST['quantidade']);
+            $this->data_fabrico = trim($_POST['data_fabrico']);
+            $this->local_fabrico = trim($_POST['local_fabrico']);
+            $this->preco = trim($_POST['preco']);
+            $this->cor = trim($_POST['cor']);
+            $this->status = trim($_POST['status']);
+            $this->tipo = trim($_POST['tipo']);
 
             $this->dados = [
                 'nome' => $this->nome,
@@ -108,13 +108,13 @@ class AdicionaPecaController
                     $_SESSION['sucesso'] = "Peca adicionada com sucesso";
                 }
 
-                header("location: ../views/verPecas.php");
+                header("location: ../views/VerPecas.php");
             } else {
                 $this->peca->deleteLast();
                 $this->id = $this->peca->getLast()->id;
                 rmdir("../../uploads/$this->id/");
                 $_SESSION['erro'] = "Erro ao tentar adicionar peca!";
-                header("location: ../views/verPecas.php");
+                header("location: ../views/VerPecas.php");
             }
         }
     }

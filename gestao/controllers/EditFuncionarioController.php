@@ -31,16 +31,16 @@ class EditFuncionarioController
         if ($_SERVER['REQUEST'] = 'POST') {
 
             //Dados vindo do Formulario
-            $this->nome = $_POST['nome'];
-            $this->apelido = $_POST['apelido'];
-            $this->data_nasc = $_POST['data_nasc'];
-            $this->nacionalidade = $_POST['nacionalidade'];
-            $this->nr_bi = $_POST['nrBI'];
-            $this->sexo = $_POST['sexo'];
-            $this->morada = $_POST['morada'];
-            $this->email = $_POST['email'];
-            $this->contactos = $_POST['contactos'];
-            $this->perfil = $_POST['perfil'];
+            $this->nome = trim($_POST['nome']);
+            $this->apelido = trim($_POST['apelido']);
+            $this->data_nasc = trim($_POST['data_nasc']);
+            $this->nacionalidade = trim($_POST['nacionalidade']);
+            $this->nr_bi = trim($_POST['nrBI']);
+            $this->sexo = trim($_POST['sexo']);
+            $this->morada = trim($_POST['morada']);
+            $this->email = trim($_POST['email']);
+            $this->contactos = trim($_POST['contactos']);
+            $this->perfil = trim($_POST['perfil']);
 
 
             $this->perfis = new Perfil();

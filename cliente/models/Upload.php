@@ -1,5 +1,5 @@
 <?php
-//include_once '../../config/db.php';
+include_once '../../config/db.php';
 
 class Upload
 {
@@ -10,13 +10,13 @@ class Upload
     private $dbConnection;
     private $id;
 
+
     function __construct()
     {
         $this->dbConnection = new dbConnection();
         $this->conexao = $this->dbConnection->connect();
         return $this->conexao;
     }
-
 
     public function selectAll($id)
     {

@@ -34,7 +34,7 @@
             <form action="./controllers/LoginController.php" method="post" class="mt-5">
                 <div class="input-group">
                     <span class="input-group-text"><i class="fa-solid fa-user-gear"></i></span>
-                    <input type="text" name="username" class="form-control" placeholder="Introduza o seu username">
+                    <input type="text" name="username" class="form-control" placeholder="Introduza o seu username(sem espa&ccedil;os)">
                 </div>
 
                 <div class="input-group mt-4">

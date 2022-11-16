@@ -25,8 +25,8 @@ body{
 }
 
 .btn-secondary{
-    position: absolute;
-    top: 50%;
+    position: fixed;
+    bottom: 50%;
 }
 
 .pecas{
@@ -39,3 +39,11 @@ body{
     width: 255px;
   
 }
+
+.offcanvas{
+   overflow-y: auto;
+}
+
+
+
+

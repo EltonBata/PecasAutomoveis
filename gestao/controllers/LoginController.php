@@ -17,9 +17,9 @@ class LoginFuncionario
 
         if ($_SERVER['REQUEST'] = 'POST') {
 
-            $this->password = $_POST['password'];
+            $this->password = trim($_POST['password']);
 
-            $this->username = $_POST['username'];
+            $this->username = trim($_POST['username']);
 
             $this->login = new Perfil();
 
@@ -36,7 +36,7 @@ class LoginFuncionario
                     $_SESSION['username'] = $this->dados->username;
                     $_SESSION['perfil'] = $this->dados->perfil;
                     $_SESSION['id'] = $this->dados->id_perfil;
-                    header("location: ../views/verPecas.php");
+                    header("location: ../views/VerPecas.php");
 
                 } else {
                     $_SESSION['erro'] =  "Usuario ou Senha incorrectos";

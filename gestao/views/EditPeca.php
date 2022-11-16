@@ -102,12 +102,9 @@ $upload = $editPeca->uploads();
                 </div>
             </div>
             <div class="container mt-4">
-                <input type="file" name="fotos[]" multiple class="upload mt-1">
-                <button class="btn btn-primary container">Adicionar novas fotos da peca</button>
                 <h5>Fotos</h5>
-                <div class="container fotos shadow-sm clearfix">
+                <div class="container fotos shadow-sm clearfix p-2">
                     <?php foreach($upload as $key => $values){ ?>
-                        <button type="button" class="btn-close img-close float-end"></button>
                         <img src="../../uploads/<?php echo $dados->id ?>/<?php echo $values->nome ?>" class="img-fluid mt-2" alt="">
                     <?php } ?>
                 </div>

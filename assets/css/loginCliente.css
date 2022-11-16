@@ -1,0 +1,37 @@
+body{
+    overflow-y: hidden;
+}
+.barra-lateral{
+    background-color: #696969;
+}
+
+.div-p{
+    height: 90vh;
+}
+
+h5{
+    word-spacing: 1.5pt;
+}
+
+.conta{
+    margin-top: 120px !important;
+}
+
+.cadastro{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+form{
+    margin-top: 50px;
+}
+
+label{
+    color: white;
+}
+
+.form{
+    background-image: url("../fotos/carrossel/female-mechanic-holding-spare-parts-of-car.jpg");
+    background-size: cover;
+    
+}

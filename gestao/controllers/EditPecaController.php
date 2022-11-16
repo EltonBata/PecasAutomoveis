@@ -46,10 +46,10 @@ class EditPecaController
 
             if ($this->operacao == 1) {
                 $_SESSION['sucesso'] = "Peca actualizada com sucesso!";
-                header("location: ../views/verPecas.php");
+                header("location: ../views/VerPecas.php");
             } else {
                 $_SESSION['erro'] = "Erro ao tentar actualizar peca";
-                header("location: ../views/verPecas.php");
+                header("location: ../views/VerPecas.php");
             }
         }
     }

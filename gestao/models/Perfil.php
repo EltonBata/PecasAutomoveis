@@ -26,7 +26,7 @@ class Perfil
 
     public function insert($params = [])
     {
-        $this->sql = $this->conexao->prepare("INSERT INTO perfil (username, senha, perfil, id_administrador, id_gestor) VALUES (:username, :senha, :perfil, :id_administrador, :id_gestor)");
+        $this->sql = $this->conexao->prepare("INSERT INTO perfil (username, senha, perfil, id_administrador, id_gestor, id_cliente) VALUES (:username, :senha, :perfil, :id_administrador, :id_gestor, :id_cliente)");
         $this->sql->execute($params);
         $this->conta = $this->sql->rowCount();
         return $this->conta;

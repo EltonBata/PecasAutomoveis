@@ -33,13 +33,13 @@ class ApagaPecaController
             }
 
             rmdir("../../uploads/$this->id");
-
-            if ($this->operacao == 1 && $this->operacao2 == 1) {
+            
+            if ($this->operacao == 1 && $this->operacao2 > 1) {
                 $_SESSION['sucesso'] = "Peca apagada com sucesso!";
-                header("location: ../views/verPecas.php");
+                header("location: ../views/VerPecas.php");
             } else {
                 $_SESSION['erro'] = "Erro ao tentar apagar peca";
-                header("location: ../views/verPecas.php");
+                header("location: ../views/VerPecas.php");
             }
         }
     }

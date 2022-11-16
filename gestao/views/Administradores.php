@@ -4,7 +4,7 @@ if (!isset($_SESSION['username'])) {
     header("location: ../index.php");
 }
 ?>
-<?php include_once '../controllers/verFuncionariosController.php'; ?>
+<?php include_once '../controllers/VerFuncionariosController.php'; ?>
 
 
 <div class="container conteudo col-sm-10 p-3">
