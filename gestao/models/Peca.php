@@ -41,6 +41,14 @@ class Peca
         return $this->dados;
     }
 
+    public function selectOneCompra($id)
+    {
+        $this->sql = $this->conexao->query("SELECT compra_peca.preco AS preco1, compra_peca.quantidade AS quantidade1, nome, tipo,cor,marca FROM peca JOIN compra_peca WHERE peca.id=compra_peca.id_peca AND compra_peca.id_compra='$id'");
+        $this->sql->execute();
+        $this->dados = $this->sql->fetchAll(PDO::FETCH_OBJ);
+        return $this->dados;
+    }
+
     public function count()
     {
         $this->sql = $this->conexao->query("SELECT * FROM peca");

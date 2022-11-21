@@ -106,7 +106,7 @@
                 <div class="modal-body">
 
                     <div class="container-fluid d-flex">
-                        <div class="container-fluid d-flex flex-wrap modal-pictures border">
+                        <div class="container-fluid d-flex flex-wrap modal-pictures ">
                             <?php 
                                 $folder = glob("../../uploads/".$value->id."/*"); 
 

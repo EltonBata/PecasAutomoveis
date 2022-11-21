@@ -17,6 +17,14 @@ class Compra
         return $this->conexao;
     }
 
+    public function selectAll($id)
+    {
+    $this->sql = $this->conexao->query("SELECT * FROM compra JOIN cliente WHERE compra.id_cliente = cliente.id AND compra.id = '$id'");
+        $this->sql->execute();
+        $this->dados = $this->sql->fetch(PDO::FETCH_OBJ);
+        return $this->dados;
+    }
+
     public function insert($params = [])
     {
         $this->sql = $this->conexao->prepare("INSERT INTO compra (data_compra, data_entrega, local_entrega, quantidade_total, desconto, estado, total_pago, id_cliente, id_metodo) VALUES (:data_compra, :data_entrega, :local_entrega, :quantidade_total, :desconto, :estado, :total_pago, :id_cliente, :id_metodo)");

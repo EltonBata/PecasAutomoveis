@@ -2,7 +2,6 @@
 session_start();
 
 include '../models/Perfil.php';
-include_once '../../config/db.php';
 
 class LoginFuncionario
 {
@@ -31,18 +30,24 @@ class LoginFuncionario
 
                 $this->verificaSenha = password_verify($this->password, $this->senhaUser);
 
-                if ($this->verificaSenha) {
-
-                    $_SESSION['username'] = $this->dados->username;
-                    $_SESSION['perfil'] = $this->dados->perfil;
-                    $_SESSION['id'] = $this->dados->id_perfil;
-                    header("location: ../views/VerPecas.php");
+                if($this->dados->perfil != 'cliente'){
+                    if ($this->verificaSenha) {
+                   
+                        $_SESSION['username'] = $this->dados->username;
+                        $_SESSION['perfil'] = $this->dados->perfil;
+                        $_SESSION['id'] = $this->dados->id_perfil;
+                        header("location: ../views/VerPecas.php");
 
                 } else {
                     $_SESSION['erro'] =  "Usuario ou Senha incorrectos";
                     header("location:../index.php");
                 }
+                }else{
+                    $_SESSION['erro'] =  "Usuario ou Senha incorrectos";
+                    header("location:../index.php");
+                }
             } else {
+                
                 $_SESSION['erro'] =  "Usuario ou Senha incorrectos";
                 header("location:../index.php");
             }

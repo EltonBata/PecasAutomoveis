@@ -24,6 +24,21 @@ class Cliente
         $this->conta = $this->sql->rowCount();
         return $this->conta;
     }
+
+    public function selectLast()
+    {
+        $this->sql = $this->conexao->query("SELECT id FROM cliente ORDER BY id DESC LIMIT 1 ");
+        $this->sql->execute();
+        $this->dados = $this->sql->fetch(PDO::FETCH_OBJ);
+        return $this->dados;
+    }
+
+    public function deleteLast()
+    {
+        $this->id = $this->selectLast()->id;
+        $this->sql = $this->conexao->query("DELETE FROM cliente WHERE id='$this->id'");
+        $this->sql->execute();
+    }
 }
 
 ?>

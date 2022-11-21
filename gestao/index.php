@@ -34,7 +34,7 @@
             <form action="./controllers/LoginController.php" method="post" class="mt-5">
                 <div class="input-group">
                     <span class="input-group-text"><i class="fa-solid fa-user-gear"></i></span>
-                    <input type="text" name="username" class="form-control" placeholder="Introduza o seu username(sem espa&ccedil;os)">
+                    <input type="text" name="username" class="form-control" placeholder="Introduz o seu username">
                 </div>
 
                 <div class="input-group mt-4">
@@ -44,6 +44,10 @@
 
                 <div class="mt-4">
                     <button class="btn btn-success">Login</button>
+                </div>
+
+                <div class="container mt-3">
+                    <p class="text-danger"><i class="fa-solid fa-circle-exclamation"></i> Caso deseja mudar a senha ou tenha esquecido dirija-se a direcao.</p>
                 </div>
             </form>
 

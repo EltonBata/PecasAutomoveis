@@ -46,12 +46,12 @@
                     <a class="nav-link" href="#"><i class="fa-solid fa-phone"></i> Contacte-nos</a>
                 </li>
                 <li class="nav-item carrinho">
-                    <a class="nav-link" href="./carrinho.php"><i class="fa-solid fa-cart-shopping"></i> Carrinho (<?php echo $carrinho->contaCarrinho(); ?>)</a>
+                    <a class="nav-link" href="<?php if(isset($_SESSION['cliente'])){ ?> ./carrinho.php <?php }else{?> ./login.php <?php } ?>"><i class="fa-solid fa-cart-shopping"></i> Carrinho (<?php echo $carrinho->contaCarrinho(); ?>)</a>
                 </li>
                 <?php if (isset($_SESSION['cliente'])) { ?>
                     <li class="nav-item">
-                        <a class="nav-link" href=""><i class="fa-solid fa-arrow-left-to-bracket"></i>
-                            Logout</a>
+                        <a class="nav-link" href="../controllers/logoutController.php"><i class="fa-solid fa-arrow-left-to-bracket"></i>
+                            Logout (<?php echo $_SESSION['user'] ?>)</a>
                     </li>
                 <?php } ?>
             </ul>

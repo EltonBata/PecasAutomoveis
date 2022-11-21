@@ -18,15 +18,16 @@ class Compra
 
     public function selectOne($id)
     {
-        $this->sql = $this->conexao->query("SELECT * FROM compra WHERE id='$id'");
+        $this->sql = $this->conexao->query("SELECT cliente.nome AS clinome, apelido,email,contactos,morada,nr_bi, data_entrega, data_compra, local_entrega, quantidade_total, estado, desconto, total_pago, metodo,numero FROM compra JOIN cliente,metodo_pagamento WHERE compra.id_cliente = cliente.id AND compra.id_metodo = metodo_pagamento.id AND compra.id = '$id'");
         $this->sql->execute();
-        $this->dados = $this->sql->fetchAll(PDO::FETCH_OBJ);
+        $this->dados = $this->sql->fetch(PDO::FETCH_OBJ);
         return $this->dados;
     }
+    
 
     public function selectAll()
     {
-        $this->sql = $this->conexao->query("SELECT compra.id AS compraID, data_compra, data_entrega, local_entrega, compra.quantidade AS compraQuantidade, desconto, cliente.nome AS cliNome, cliente.apelido AS cliApelido, email, contactos, peca.nome AS pecaNome, marca, preco, tamanho, compra.status AS compraStatus, total_pago  FROM compra JOIN cliente, peca WHERE compra.id_cliente = cliente.id AND compra.id_peca = peca.id");
+        $this->sql = $this->conexao->query("SELECT compra.id AS compraID, nome, apelido, data_entrega, data_compra, local_entrega, quantidade_total, estado, desconto, total_pago FROM compra JOIN cliente WHERE compra.id_cliente = cliente.id");
         $this->sql->execute();
         $this->dados = $this->sql->fetchAll(PDO::FETCH_OBJ);
         return $this->dados;
@@ -42,7 +43,15 @@ class Compra
 
     public function countStatus()
     {
-        $this->sql = $this->conexao->query("SELECT * FROM compra WHERE status LIKE 'pendente'");
+        $this->sql = $this->conexao->query("SELECT * FROM compra WHERE estado LIKE 'pendente'");
+        $this->sql->execute();
+        $this->conta = $this->sql->rowCount();
+        return $this->conta;
+    }
+
+    public function updateEstado($id)
+    {
+        $this->sql = $this->conexao->query("UPDATE compra SET estado = 'vista' WHERE id='$id'");
         $this->sql->execute();
         $this->conta = $this->sql->rowCount();
         return $this->conta;

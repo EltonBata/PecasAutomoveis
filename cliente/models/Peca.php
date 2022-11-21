@@ -20,7 +20,15 @@ class Peca
 
     public function selectAll()
     {
-        $this->sql = $this->conexao->query("SELECT * FROM peca ORDER BY nome ASC");
+        $this->sql = $this->conexao->query("SELECT * FROM peca WHERE status='disponivel' ORDER BY nome ASC");
+        $this->sql->execute();
+        $this->dados = $this->sql->fetchAll(PDO::FETCH_OBJ);
+        return $this->dados;
+    }
+
+    public function selectCompra($id_compra)
+    {
+        $this->sql = $this->conexao->query("SELECT * FROM peca JOIN compra_peca WHERE compra_peca.id_peca = peca.id AND compra_peca.id_compra = '$id_compra'");
         $this->sql->execute();
         $this->dados = $this->sql->fetchAll(PDO::FETCH_OBJ);
         return $this->dados;

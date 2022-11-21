@@ -65,7 +65,7 @@ if (!isset($_SESSION['username'])) {
                 </div>
             </div>
             <div class="container mt-4">
-                <input type="file" name="fotos[]" multiple class="upload mt-1">
+                <input type="file" name="fotos[]" multiple class="upload mt-1" required>
                 <button class="btn btn-primary container">Selecione fotos da peca</button>
             </div>
         </form>

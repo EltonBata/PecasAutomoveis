@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Tempo de geração: 11-Nov-2022 às 11:45
--- Versão do servidor: 8.0.27
--- versão do PHP: 7.4.26
+-- Host: localhost
+-- Tempo de geração: 20/11/2022 às 22:01
+-- Versão do servidor: 10.4.25-MariaDB
+-- Versão do PHP: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,130 +24,135 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `administrador`
+-- Estrutura para tabela `administrador`
 --
 
-DROP TABLE IF EXISTS `administrador`;
-CREATE TABLE IF NOT EXISTS `administrador` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `nome` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `apelido` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+CREATE TABLE `administrador` (
+  `id` int(11) NOT NULL,
+  `nome` varchar(100) NOT NULL,
+  `apelido` varchar(100) NOT NULL,
   `data_nascimento` date NOT NULL,
-  `nacionalidade` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `nr_bi` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `sexo` char(5) COLLATE utf8mb4_general_ci NOT NULL,
-  `morada` text COLLATE utf8mb4_general_ci NOT NULL,
-  `email` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `contactos` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `nacionalidade` varchar(100) NOT NULL,
+  `nr_bi` varchar(100) NOT NULL,
+  `sexo` char(5) NOT NULL,
+  `morada` text NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `contactos` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Extraindo dados da tabela `administrador`
+-- Despejando dados para a tabela `administrador`
 --
 
 INSERT INTO `administrador` (`id`, `nome`, `apelido`, `data_nascimento`, `nacionalidade`, `nr_bi`, `sexo`, `morada`, `email`, `contactos`) VALUES
-(9, 'Joao Kagame', 'Kagame', '2022-11-16', 'Moçambicano', '1213234543A', 'M', 'Maputo', 'jHanuro@hotmail.com', '123456, 234567'),
-(10, 'Maria', 'Kagame', '2022-11-09', 'Moçambicano', '98737676365M', 'F', 'Marracuene', 'mHanuro@hotmail.com', '123456, 234567');
+(10, 'Teste', '', '2022-11-09', 'Moçambicano', '98737676365M', 'M', 'Marracuene', 'mHanuro@hotmail.com', '123456, 234567');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `cliente`
+-- Estrutura para tabela `cliente`
 --
 
-DROP TABLE IF EXISTS `cliente`;
-CREATE TABLE IF NOT EXISTS `cliente` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `nome` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `apelido` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `email` varchar(512) COLLATE utf8mb4_general_ci NOT NULL,
-  `contactos` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `morada` text COLLATE utf8mb4_general_ci NOT NULL,
-  `nr_bi` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+CREATE TABLE `cliente` (
+  `id` int(11) NOT NULL,
+  `nome` varchar(100) NOT NULL,
+  `apelido` varchar(100) NOT NULL,
+  `email` varchar(512) NOT NULL,
+  `contactos` varchar(100) NOT NULL,
+  `morada` text NOT NULL,
+  `nr_bi` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Extraindo dados da tabela `cliente`
+-- Despejando dados para a tabela `cliente`
 --
 
 INSERT INTO `cliente` (`id`, `nome`, `apelido`, `email`, `contactos`, `morada`, `nr_bi`) VALUES
-(1, 'Elton', 'Bata', 'elton@gmail.com', '849030182', 'Maputo, Matola', '1234567890');
+(13, 'Jose', 'Alberto', 'j@gmail.com', '123456', 'Maputo', '12345678M');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `compra`
+-- Estrutura para tabela `compra`
 --
 
-DROP TABLE IF EXISTS `compra`;
-CREATE TABLE IF NOT EXISTS `compra` (
-  `id` int NOT NULL AUTO_INCREMENT,
+CREATE TABLE `compra` (
+  `id` int(11) NOT NULL,
   `data_compra` date NOT NULL,
   `data_entrega` date NOT NULL,
-  `local_entrega` text COLLATE utf8mb4_general_ci NOT NULL,
-  `quantidade` int NOT NULL,
-  `desconto` float NOT NULL,
-  `status` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `total_pago` float NOT NULL,
-  `id_cliente` int NOT NULL,
-  `id_peca` int NOT NULL,
-  `id_gestor` int NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `id_cliente` (`id_cliente`),
-  KEY `id_gestor` (`id_gestor`),
-  KEY `id_peca` (`id_peca`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `local_entrega` varchar(512) NOT NULL,
+  `quantidade_total` int(11) NOT NULL,
+  `estado` varchar(100) NOT NULL,
+  `desconto` int(11) NOT NULL,
+  `total_pago` int(11) NOT NULL,
+  `id_cliente` int(11) NOT NULL,
+  `id_metodo` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Extraindo dados da tabela `compra`
+-- Despejando dados para a tabela `compra`
 --
 
-INSERT INTO `compra` (`id`, `data_compra`, `data_entrega`, `local_entrega`, `quantidade`, `desconto`, `status`, `total_pago`, `id_cliente`, `id_peca`, `id_gestor`) VALUES
-(3, '2022-11-02', '2022-11-15', 'Maputo', 1, 0, 'pendente', 1000, 1, 48, 7);
+INSERT INTO `compra` (`id`, `data_compra`, `data_entrega`, `local_entrega`, `quantidade_total`, `estado`, `desconto`, `total_pago`, `id_cliente`, `id_metodo`) VALUES
+(12, '2022-11-20', '2022-11-27', 'Maputo', 5, 'vista', 0, 124000, 13, 34);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `feedback`
+-- Estrutura para tabela `compra_peca`
 --
 
-DROP TABLE IF EXISTS `feedback`;
-CREATE TABLE IF NOT EXISTS `feedback` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `mensagem` text COLLATE utf8mb4_general_ci NOT NULL,
+CREATE TABLE `compra_peca` (
+  `id` int(11) NOT NULL,
+  `quantidade` int(11) NOT NULL,
+  `preco` int(11) NOT NULL,
+  `id_peca` int(11) NOT NULL,
+  `id_compra` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Despejando dados para a tabela `compra_peca`
+--
+
+INSERT INTO `compra_peca` (`id`, `quantidade`, `preco`, `id_peca`, `id_compra`) VALUES
+(20, 4, 24000, 61, 12),
+(19, 1, 100000, 62, 12);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `feedback`
+--
+
+CREATE TABLE `feedback` (
+  `id` int(11) NOT NULL,
+  `mensagem` text NOT NULL,
   `data` date NOT NULL,
-  `id_cliente` int DEFAULT NULL,
-  `id_resposta` int DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `id_cliente` (`id_cliente`),
-  KEY `id_resposta` (`id_resposta`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `id_cliente` int(11) DEFAULT NULL,
+  `id_resposta` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `gestor`
+-- Estrutura para tabela `gestor`
 --
 
-DROP TABLE IF EXISTS `gestor`;
-CREATE TABLE IF NOT EXISTS `gestor` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `nome` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `apelido` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+CREATE TABLE `gestor` (
+  `id` int(11) NOT NULL,
+  `nome` varchar(100) NOT NULL,
+  `apelido` varchar(100) NOT NULL,
   `data_nascimento` date NOT NULL,
-  `nacionalidade` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `nr_bi` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `sexo` char(5) COLLATE utf8mb4_general_ci NOT NULL,
-  `morada` text COLLATE utf8mb4_general_ci NOT NULL,
-  `email` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `contactos` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `nacionalidade` varchar(100) NOT NULL,
+  `nr_bi` varchar(100) NOT NULL,
+  `sexo` char(5) NOT NULL,
+  `morada` text NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `contactos` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Extraindo dados da tabela `gestor`
+-- Despejando dados para a tabela `gestor`
 --
 
 INSERT INTO `gestor` (`id`, `nome`, `apelido`, `data_nascimento`, `nacionalidade`, `nr_bi`, `sexo`, `morada`, `email`, `contactos`) VALUES
@@ -156,124 +161,287 @@ INSERT INTO `gestor` (`id`, `nome`, `apelido`, `data_nascimento`, `nacionalidade
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `peca`
+-- Estrutura para tabela `metodo_pagamento`
 --
 
-DROP TABLE IF EXISTS `peca`;
-CREATE TABLE IF NOT EXISTS `peca` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `nome` varchar(512) COLLATE utf8mb4_general_ci NOT NULL,
-  `tipo` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `tamanho` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `marca` varchar(512) COLLATE utf8mb4_general_ci NOT NULL,
+CREATE TABLE `metodo_pagamento` (
+  `id` int(11) NOT NULL,
+  `metodo` varchar(50) NOT NULL,
+  `numero` int(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Despejando dados para a tabela `metodo_pagamento`
+--
+
+INSERT INTO `metodo_pagamento` (`id`, `metodo`, `numero`) VALUES
+(34, 'Mpesa', 849030180);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `peca`
+--
+
+CREATE TABLE `peca` (
+  `id` int(11) NOT NULL,
+  `nome` varchar(512) NOT NULL,
+  `tipo` varchar(100) NOT NULL,
+  `tamanho` varchar(50) NOT NULL,
+  `marca` varchar(512) NOT NULL,
   `preco` float NOT NULL,
   `data_fabrico` date NOT NULL,
-  `local_fabrico` varchar(512) COLLATE utf8mb4_general_ci NOT NULL,
-  `cor` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `status` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `quantidade` int NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `local_fabrico` varchar(512) NOT NULL,
+  `cor` varchar(50) NOT NULL,
+  `status` varchar(100) NOT NULL,
+  `quantidade` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Extraindo dados da tabela `peca`
+-- Despejando dados para a tabela `peca`
 --
 
 INSERT INTO `peca` (`id`, `nome`, `tipo`, `tamanho`, `marca`, `preco`, `data_fabrico`, `local_fabrico`, `cor`, `status`, `quantidade`) VALUES
-(47, 'Motor', 'tipo1', '50kg', 'VW', 10000, '2022-12-02', 'Alemanha', 'cinza', 'indisponivel', 10),
-(48, 'Roda', 'tipo1', '20', 'BMW', 10000, '2022-10-26', 'EUA', 'preto', 'disponivel', 100),
-(49, 'Motor', 'tipo1', '50kg', 'VW', 10000, '2022-12-02', 'Alemanha', 'cinza', 'disponivel', 10);
+(61, 'G-power', 'Vela', '‎8.64 x 2.79 x 2.29 cm; 0.28 g', 'NGK', 6000, '2022-10-31', 'Brazil', 'cinza', 'disponivel', 100),
+(62, 'Turbo Flex', 'Motor 1.0', '128 cv', 'VW', 100000, '2022-11-23', 'Alemanha', 'cinza', 'disponivel', 5),
+(69, 'TGI', 'Motor 1.0', '90 cv', 'VW', 100000, '2022-11-10', 'Alemanha', 'preto', 'disponivel', 10);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `perfil`
+-- Estrutura para tabela `perfil`
 --
 
-DROP TABLE IF EXISTS `perfil`;
-CREATE TABLE IF NOT EXISTS `perfil` (
-  `id_perfil` int NOT NULL AUTO_INCREMENT,
-  `username` varchar(200) COLLATE utf8mb4_general_ci NOT NULL,
-  `senha` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `perfil` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `id_gestor` int DEFAULT NULL,
-  `id_administrador` int DEFAULT NULL,
-  `id_cliente` int NOT NULL,
-  PRIMARY KEY (`id_perfil`),
-  KEY `id_gestor` (`id_gestor`),
-  KEY `id_administrador` (`id_administrador`),
-  KEY `id_cliente` (`id_cliente`)
-) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+CREATE TABLE `perfil` (
+  `id_perfil` int(11) NOT NULL,
+  `username` varchar(200) NOT NULL,
+  `senha` varchar(100) NOT NULL,
+  `perfil` varchar(100) NOT NULL,
+  `id_gestor` int(11) DEFAULT NULL,
+  `id_administrador` int(11) DEFAULT NULL,
+  `id_cliente` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 --
--- Extraindo dados da tabela `perfil`
+-- Despejando dados para a tabela `perfil`
 --
 
 INSERT INTO `perfil` (`id_perfil`, `username`, `senha`, `perfil`, `id_gestor`, `id_administrador`, `id_cliente`) VALUES
-(14, 'Maria ', '$2y$10$eK7zeFlq4PxbH6PIonKK3eJmv/vAH2XkapVa3x0xw7njxgQHCgRcy', 'gestor', 7, 0, 0),
-(11, 'Joao', '$2y$10$fGZSlIQ44QWtAH0gWXgd5uXbg', 'admin', 0, 9, 0),
-(13, 'Maria Kagame', '$2y$10$jrouW2YNRckdnjSmEb9/3.p7xwCE5QvlwUTlRNpv4yRXVLnGxisN6', 'admin', 0, 10, 0);
+(13, 'Teste', '$2y$10$jrouW2YNRckdnjSmEb9/3.p7xwCE5QvlwUTlRNpv4yRXVLnGxisN6', 'admin', 0, 10, 0),
+(17, 'Jose Alberto', '$2y$10$BLg4iGnjVPou/gfgzNE69ujH5A8BDBAqiuZmnhj9e.rUyu0sDbqvC', 'cliente', NULL, NULL, 13);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `resposta`
+-- Estrutura para tabela `resposta`
 --
 
-DROP TABLE IF EXISTS `resposta`;
-CREATE TABLE IF NOT EXISTS `resposta` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `resposta` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+CREATE TABLE `resposta` (
+  `id` int(11) NOT NULL,
+  `resposta` text NOT NULL,
   `data` date NOT NULL,
-  `id_gestor` int NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `id_gestor` (`id_gestor`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `id_gestor` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `upload`
+-- Estrutura para tabela `upload`
 --
 
-DROP TABLE IF EXISTS `upload`;
-CREATE TABLE IF NOT EXISTS `upload` (
-  `id` int NOT NULL AUTO_INCREMENT,
+CREATE TABLE `upload` (
+  `id` int(11) NOT NULL,
   `nome` varchar(100) NOT NULL,
-  `id_peca` int NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `id_peca` (`id_peca`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
+  `id_peca` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `upload`
+-- Despejando dados para a tabela `upload`
 --
 
 INSERT INTO `upload` (`id`, `nome`, `id_peca`) VALUES
-(1, '1.jpg', 48),
-(2, '2.jpg', 48);
+(14, '63715cc169375.png', 58),
+(13, '63715cc16890d.jpg', 58),
+(15, '637679b9931cd.jpg', 60),
+(16, '637679b9935ba.jpg', 60),
+(17, '637679b993976.jpg', 60),
+(18, '637a87894cbf6.png', 61),
+(19, '637a87894d188.jpg', 61),
+(20, '637a8ad0b1dc3.jpg', 62),
+(27, '637a8d8fd63f0.webp', 69),
+(26, '637a8d8fd6125.jpg', 69);
 
 --
--- Restrições para despejos de tabelas
+-- Índices para tabelas despejadas
 --
 
 --
--- Limitadores para a tabela `compra`
+-- Índices de tabela `administrador`
+--
+ALTER TABLE `administrador`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Índices de tabela `cliente`
+--
+ALTER TABLE `cliente`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Índices de tabela `compra`
+--
+ALTER TABLE `compra`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_cliente` (`id_cliente`),
+  ADD KEY `id_metodo` (`id_metodo`);
+
+--
+-- Índices de tabela `compra_peca`
+--
+ALTER TABLE `compra_peca`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_peca` (`id_peca`),
+  ADD KEY `id_compra` (`id_compra`);
+
+--
+-- Índices de tabela `feedback`
+--
+ALTER TABLE `feedback`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_cliente` (`id_cliente`),
+  ADD KEY `id_resposta` (`id_resposta`);
+
+--
+-- Índices de tabela `gestor`
+--
+ALTER TABLE `gestor`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Índices de tabela `metodo_pagamento`
+--
+ALTER TABLE `metodo_pagamento`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Índices de tabela `peca`
+--
+ALTER TABLE `peca`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Índices de tabela `perfil`
+--
+ALTER TABLE `perfil`
+  ADD PRIMARY KEY (`id_perfil`),
+  ADD KEY `id_gestor` (`id_gestor`),
+  ADD KEY `id_administrador` (`id_administrador`),
+  ADD KEY `id_cliente` (`id_cliente`);
+
+--
+-- Índices de tabela `resposta`
+--
+ALTER TABLE `resposta`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_gestor` (`id_gestor`);
+
+--
+-- Índices de tabela `upload`
+--
+ALTER TABLE `upload`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_peca` (`id_peca`);
+
+--
+-- AUTO_INCREMENT para tabelas despejadas
+--
+
+--
+-- AUTO_INCREMENT de tabela `administrador`
+--
+ALTER TABLE `administrador`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT de tabela `cliente`
+--
+ALTER TABLE `cliente`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT de tabela `compra`
+--
+ALTER TABLE `compra`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT de tabela `compra_peca`
+--
+ALTER TABLE `compra_peca`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT de tabela `feedback`
+--
+ALTER TABLE `feedback`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `gestor`
+--
+ALTER TABLE `gestor`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT de tabela `metodo_pagamento`
+--
+ALTER TABLE `metodo_pagamento`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+
+--
+-- AUTO_INCREMENT de tabela `peca`
+--
+ALTER TABLE `peca`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+
+--
+-- AUTO_INCREMENT de tabela `perfil`
+--
+ALTER TABLE `perfil`
+  MODIFY `id_perfil` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
+-- AUTO_INCREMENT de tabela `resposta`
+--
+ALTER TABLE `resposta`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `upload`
+--
+ALTER TABLE `upload`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+
+--
+-- Restrições para tabelas despejadas
+--
+
+--
+-- Restrições para tabelas `compra`
 --
 ALTER TABLE `compra`
   ADD CONSTRAINT `compra_ibfk_1` FOREIGN KEY (`id_cliente`) REFERENCES `cliente` (`id`),
-  ADD CONSTRAINT `compra_ibfk_2` FOREIGN KEY (`id_gestor`) REFERENCES `gestor` (`id`),
-  ADD CONSTRAINT `compra_ibfk_3` FOREIGN KEY (`id_peca`) REFERENCES `peca` (`id`);
+  ADD CONSTRAINT `compra_ibfk_4` FOREIGN KEY (`id_metodo`) REFERENCES `metodo_pagamento` (`id`);
 
 --
--- Limitadores para a tabela `feedback`
+-- Restrições para tabelas `feedback`
 --
 ALTER TABLE `feedback`
   ADD CONSTRAINT `feedback_ibfk_1` FOREIGN KEY (`id_cliente`) REFERENCES `cliente` (`id`),
   ADD CONSTRAINT `feedback_ibfk_2` FOREIGN KEY (`id_resposta`) REFERENCES `resposta` (`id`);
 
 --
--- Limitadores para a tabela `resposta`
+-- Restrições para tabelas `resposta`
 --
 ALTER TABLE `resposta`
   ADD CONSTRAINT `resposta_ibfk_1` FOREIGN KEY (`id_gestor`) REFERENCES `gestor` (`id`);

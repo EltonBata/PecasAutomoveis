@@ -53,7 +53,7 @@ class Estatisticas
 
     public function comprasPendentes()
     {
-        $this->sql = $this->conexao->query("SELECT * FROM compra WHERE status LIKE 'pendente'");
+        $this->sql = $this->conexao->query("SELECT * FROM compra WHERE estado LIKE 'pendente'");
         $this->sql->execute();
         $this->conta = $this->sql->rowCount();
         return $this->conta;
@@ -61,7 +61,7 @@ class Estatisticas
 
     public function comprasCanceladas()
     {
-        $this->sql = $this->conexao->query("SELECT * FROM compra WHERE status LIKE 'cancelado'");
+        $this->sql = $this->conexao->query("SELECT * FROM compra WHERE estado LIKE 'cancelado'");
         $this->sql->execute();
         $this->conta = $this->sql->rowCount();
         return $this->conta;
@@ -69,7 +69,7 @@ class Estatisticas
 
     public function comprasEntregues()
     {
-        $this->sql = $this->conexao->query("SELECT * FROM compra WHERE status LIKE 'entregado'");
+        $this->sql = $this->conexao->query("SELECT * FROM compra WHERE estado LIKE 'entregado'");
         $this->sql->execute();
         $this->conta = $this->sql->rowCount();
         return $this->conta;

@@ -54,7 +54,7 @@ class registrarCompraController
                     'local_entrega' => $this->local_entrega,
                     'quantidade_total' => $this->quantidade_total,
                     'id_metodo' => $this->id_metodo,
-                    'id_cliente' => 1,
+                    'id_cliente' => $_SESSION['cliente'],
                     'estado' => 'pendente',
                     'desconto' => 0
                 ];
@@ -88,7 +88,9 @@ class registrarCompraController
                             $this->compra->deleteCompra();
                             header("location: ../views/index.php");
                         }
-
+                        unset($_SESSION['carrinho']);
+                        $_SESSION['sucesso'] = "A sua compra foi registrada com sucesso. Acesse o seu email para mais detalhes. ";
+                        header("location: ../views/index.php");
                     }
 
                 }else{

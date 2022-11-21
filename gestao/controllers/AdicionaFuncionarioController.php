@@ -77,7 +77,7 @@ class AdicionaFuncionarioController
                     $this->id_administrador = $this->funcionario->getLast()->id;
                     
                     $this->dadosPerfil = [
-                        'username' => $this->nome."".$this->apelido,
+                        'username' => $this->nome." ".$this->apelido,
                         'senha' => password_hash($this->senha, PASSWORD_BCRYPT),
                         'perfil' => $this->perfil,
                         'id_gestor' => $this->id_gestor,

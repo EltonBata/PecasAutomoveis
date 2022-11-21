@@ -26,7 +26,7 @@ class AdicionaPecaController
     private $extensao;
     private $nrArquivos;
     private $contador;
-    private $contador2 = 0;
+    private $contador2 = 1;
     private $controlador = true;
     private $upload;
 
@@ -70,7 +70,7 @@ class AdicionaPecaController
 
                 mkdir("../../uploads/$this->id", 0700);
 
-                $this->formatos = ['png', 'jpg', 'jpeg', 'git'];
+                $this->formatos = ['png', 'jpg', 'jpeg', 'gif', 'webp'];
                 $this->nrArquivos = count($_FILES['fotos']['name']);
                 $this->contador = 0;
 
@@ -97,6 +97,9 @@ class AdicionaPecaController
 
                             $this->operacao = $this->upload->insert($this->dados);
                         }
+                    }else{
+                        $this->contador++;
+                        $this->controlador = false;
                     }
 
                     $this->contador++;

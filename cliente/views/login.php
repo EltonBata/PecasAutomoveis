@@ -5,7 +5,7 @@
 <div class="container-fluid d-flex div-p p-0">
 
     <div class="container-fluid w-25 barra-lateral p-3 m-0">
-        <h5 class="text-white text-center my-5">YA</h5>
+        <h5 class="text-white text-center my-5">POOA</h5>
         <hr class="text-white">
         <p class="text-white text-center mt-5 conta">Não tens uma conta?</p>
         <a href="./cadastroCliente.php" class="btn text-white cadastro ms-5">Cadastre-se</a>
@@ -23,7 +23,7 @@
             </div>
         <?php } ?>
 
-        <form action="./controllers/LoginController.php" method="post" class="w-75 mx-auto login-form">
+        <form action="../controllers/loginController.php" method="post" class="w-75 mx-auto login-form">
             <div class="container">
                 <label class="form-label">Username:</label>
                 <input type="text" name="username" class="form-control" placeholder="Introduza o seu username">

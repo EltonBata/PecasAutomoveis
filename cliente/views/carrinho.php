@@ -7,54 +7,56 @@
     <?php  if(isset($_SESSION['carrinho'])){ ?>
     <div class="container py-3 border">
 
-        <?php foreach ($_SESSION['carrinho'] as $key => $value) {
+        <form method="POST" action="../controllers/registrarCompraController.php" id="form1">
+            <?php foreach ($_SESSION['carrinho'] as $key => $value) {
             $dados = $carrinho->selectPecaId($value); ?>
 
-        <div class="container">
-            <h4 class="text-center my-3"><?php echo $dados->nome; ?></h4>
-            <a href="../controllers/removerCarrinhoController.php?id=<?php echo $value ?>"
-                class="btn btn-danger position-absolute" style="right: 55%;">Remover</a>
-            <?php $folder = glob("../../uploads/".$value."/*"); ?>
+            <div class="container">
+                <h4 class="text-center my-3"><?php echo $dados->nome; ?></h4>
+                <a href="../controllers/removerCarrinhoController.php?id=<?php echo $value ?>"
+                    class="btn btn-danger position-absolute" style="right: 55%;">Remover</a>
+                <?php $folder = glob("../../uploads/".$value."/*"); ?>
 
-            <div class="container-fluid mb-5 clearfix">
+                <div class="container-fluid mb-5 clearfix">
 
-                <!-- Carousel -->
-                <div id="demo" class="carousel slide float-start w-50 border" data-bs-ride="carousel">
+                    <!-- Carousel -->
+                    <div id="demo" class="carousel slide float-start w-50 " data-bs-ride="carousel">
 
-                    <!-- The slideshow/carousel -->
-                    <div class="carousel-inner h-50">
-                        <div class="carousel-item active">
-                            <img src="<?php echo $folder[0]; ?>" alt="" class="d-block img-fluid"
-                                style="width:100%; height: 300px;">
+                        <!-- The slideshow/carousel -->
+                        <div class="carousel-inner h-50">
+                            <div class="carousel-item active">
+                                <img src="<?php echo $folder[0]; ?>" alt="" class="d-block img-fluid"
+                                    style="width:100%; height: 300px;">
+                            </div>
+                            <?php foreach($folder as $fot) { ?>
+                            <div class="carousel-item">
+                                <img src="<?php echo $fot ?>" alt="" class="d-block img-fluid"
+                                    style="width:100%; height: 300px;">
+                            </div>
+                            <?php } ?>
                         </div>
-                        <?php foreach($folder as $fot) { ?>
-                        <div class="carousel-item">
-                            <img src="<?php echo $fot ?>" alt="" class="d-block img-fluid"
-                                style="width:100%; height: 300px;">
-                        </div>
-                        <?php } ?>
+
+                        <!-- Left and right controls/icons -->
+                        <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon"></span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
+                            <span class="carousel-control-next-icon"></span>
+                        </button>
                     </div>
 
-                    <!-- Left and right controls/icons -->
-                    <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon"></span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
-                        <span class="carousel-control-next-icon"></span>
-                    </button>
-                </div>
 
+                    <div class="container float-end w-50">
+                        <p>Cor: <?php echo $dados->cor ?></p>
+                        <p>Tipo de Peca: <?php echo $dados->tipo ?></p>
+                        <p>Marca: <?php echo $dados->marca ?></p>
+                        <p>Data de Fabrico: <?php echo $dados->data_fabrico ?></p>
+                        <p>Local de Fabrico: <?php echo $dados->local_fabrico ?></p>
+                        <p>Tamanho: <?php echo $dados->tamanho ?></p>
+                        <p class="text-end" id="preco<?php echo $value; ?>" style="font-weight: bold;">Pre&ccedil;o:
+                            <?php echo $dados->preco ?>
+                        </p>
 
-                <div class="container float-end w-50">
-                    <p>Cor: <?php echo $dados->cor ?></p>
-                    <p>Tipo de Peca: <?php echo $dados->tipo ?></p>
-                    <p>Marca: <?php echo $dados->marca ?></p>
-                    <p>Data de Fabrico: <?php echo $dados->data_fabrico ?></p>
-                    <p>Local de Fabrico: <?php echo $dados->local_fabrico ?></p>
-                    <p>Tamanho: <?php echo $dados->tamanho ?></p>
-                    <p class="text-end" style="font-weight: bold;">Pre&ccedil;o: <?php echo $dados->preco ?>
-                    </p>
-                    <form method="POST" action="../controllers/registrarCompraController.php" id="form1">
                         <input type="number" id="<?php echo $value; ?>" class="form-control quantidade"
                             name="quantidade<?php echo $value ?>" oninput="calcula('#<?php echo $value ?>')"
                             placeholder="quantidade" min="1" max="10" required>
@@ -62,11 +64,11 @@
                         <input type="hidden" class="novopreco" name="preco<?php echo $value ?>">
 
 
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <?php } ?>
+            <?php } ?>
 
     </div>
 
@@ -80,7 +82,8 @@
 
         <div class="">
             <label>Data de Entega:</label>
-            <input type="date" class="form-control" name="data_entrega" min="<?php echo date('Y-m-d', strtotime('+1 week')) ?>" required>
+            <input type="date" class="form-control" name="data_entrega"
+                min="<?php echo date('Y-m-d', strtotime('+1 week')) ?>" required>
             <input type="hidden" name="quantidade_total" class="quantidade_total">
             <input type="hidden" name="preco_total" class="preco_total">
         </div>
@@ -95,12 +98,14 @@
 
             <label>Selecione o metodo de pagamento</label>
             <select class="form-select" name="metodo">
-                <option class="mpesa">Mpesa</option>
-                <option class="e-mola">E-mola</option>
-                <option class="">E-mola</option>
+                <option class="Mpesa">Mpesa</option>
+                <option class="E-mola">E-mola</option>
+                <option class="Mkesh">Mkesh</option>
+                <option class="BCI">BCI</option>
+                <option class="BIM">BIM</option>
             </select>
 
-            <input type="number" name="numero" class="form-control mt-3" placeholder="Introduza o numero de telefone">
+            <input type="number" name="numero" class="form-control mt-3" placeholder="Introduza o numero">
 
         </div>
         <div class="mt-3">
@@ -130,7 +135,7 @@ function calcula(input) {
     var next = input.next().val();
     var preco = quantidade * next;
     var precoTotal = nextt.next();
-
+    console.log();
 
     if (quantidade != 0) {
         precotext.text("Preco: " + preco);
@@ -172,8 +177,6 @@ function calcula(input) {
         $('.preco_total').val(totalPreco);
     }
 }
-
- 
 </script>
 
 
